@@ -2,9 +2,11 @@ package com.example.demo.client.rest;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -69,6 +71,39 @@ public class RestTemplateAdapter {
 		
 		//実行
 		ResponseEntity<T> responseEntity = restTemplate.exchange(requestEntity, responseBodyClass);
+		user.setTokenForServer(
+				responseEntity
+					.getHeaders()
+					.getFirst("X-AUTH-TOKEN"));
+		return responseEntity.getBody();
+	}
+	
+	public <R,T> List<T> getForObjectsWhenLogined(String url, R requestBody, Class<T> oneOfResponseBodyClass,UserDetailsImp user) {
+		//変換
+		Map<String, String> requestBodyMap;
+		try {
+			requestBodyMap = BeanUtils.describe(requestBody);
+		} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+			requestBodyMap = new HashMap<>();
+		}
+		
+		//URLの作成
+		StringBuilder bld = new StringBuilder(url);
+		for(Map.Entry<String, ?> entry : requestBodyMap.entrySet()) {
+			bld.append(entry.getKey() + "=" + entry.getValue().toString() + "&");
+		}
+		bld.setLength(bld.length()-1);
+		url = bld.toString();
+		
+		//リクエスト作成
+		RequestEntity<Void> requestEntity = 
+		        RequestEntity
+		          .get(ApiUrlRootConfing.ROOT_URL + url)
+		          .header("X-AUTH-TOKEN",user.getTokenForServer())
+		          .build();
+		
+		//実行
+		ResponseEntity<List<T>> responseEntity = restTemplate.exchange(requestEntity, new ParameterizedTypeReference<List<T>>() {});
 		user.setTokenForServer(
 				responseEntity
 					.getHeaders()
