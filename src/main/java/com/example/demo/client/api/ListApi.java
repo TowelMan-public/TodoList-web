@@ -1,5 +1,8 @@
 package com.example.demo.client.api;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,58 +14,46 @@ import com.example.demo.security.UserDetailsImp;
 import lombok.Data;
 
 @Component
-public class ContentApi {
-	private static final String ROOT_URL = "/content";
+public class ListApi {
+	private static final String ROOT_URL = "/list";
 	
 	@Autowired
 	RestTemplateAdapter restTemplateAdapter;
 	
-	public void deleteContent(UserDetailsImp user, int contentId) {
-		//URL
+	public void deleteList(UserDetailsImp user, int listId) {
 		final String URL = ROOT_URL + "/delete";
 		
-		//Dto作成
 		Dto dto = new Dto();
-		dto.setContentId(contentId);
+		dto.setListId(listId);
 		
-		//処理
 		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
 	}
 	
-	public ContentEntity getContent(UserDetailsImp user, int contentId) {
-		//URL
+	public List<ContentEntity> getContentsInList(UserDetailsImp user, int listId) {
 		final String URL = ROOT_URL + "/get";
 		
-		//Dto作成
 		Dto dto = new Dto();
-		dto.setContentId(contentId);
+		dto.setListId(listId);
 		
-		//処理
-		return restTemplateAdapter.getForObjectWhenLogined(URL, dto, ContentEntity.class, user);
+		return restTemplateAdapter.getForObjectsWhenLogined(URL, dto, ContentEntity.class, user);
 	}
 	
-	public void insertContent(UserDetailsImp user,InsertDtoBuilder builder) {
-		//URL
+	public void insertList(UserDetailsImp user, InsertDtoBuilder builder) {
 		final String URL = ROOT_URL + "/insert";
 		
-		//Dto作成
 		Dto dto = builder.build();
 		
-		//処理
 		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
 	}
 	
-	public void updateContent(UserDetailsImp user,UpdateDtoBuilder builder) {
-		//URL
+	public void updateList(UserDetailsImp user, UpdateDtoBuilder builder) {
 		final String URL = ROOT_URL + "/update";
 		
-		//Dto作成
 		Dto dto = builder.build();
 		
-		//処理
 		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
 	}
-
+	
 	public class InsertDtoBuilder{
 		private Dto dto;
 		
@@ -70,18 +61,23 @@ public class ContentApi {
 			dto = new Dto();
 		}
 		
-		public InsertDtoBuilder setContentId(int contentId) {
-			dto.setContentId(contentId);
+		public InsertDtoBuilder setSpaceId(int spaceId) {
+			dto.setSpaceId(spaceId);
 			return this;
 		}
 		
-		public InsertDtoBuilder setTitle(String title) {
-			dto.setTitle(title);
+		public InsertDtoBuilder setlistName(String listName) {
+			dto.setListName(listName);
 			return this;
 		}
 		
-		public InsertDtoBuilder setContentText(String contentText) {
-			dto.setContentText(contentText);
+		public InsertDtoBuilder setListDate(Date listDate) {
+			dto.setListDate(listDate);
+			return this;
+		}
+		
+		public InsertDtoBuilder setListTime(Date listTime) {
+			dto.setListTime(listTime);
 			return this;
 		}
 		
@@ -97,23 +93,23 @@ public class ContentApi {
 			dto = new Dto();
 		}
 		
-		public UpdateDtoBuilder setContentId(int contentId) {
-			dto.setContentId(contentId);
-			return this;
-		}
-		
-		public UpdateDtoBuilder setTitle(String title) {
-			dto.setTitle(title);
-			return this;
-		}
-		
-		public UpdateDtoBuilder setContentText(String contentText) {
-			dto.setContentText(contentText);
-			return this;
-		}
-		
-		public UpdateDtoBuilder setContentText(Integer listId) {
+		public UpdateDtoBuilder setSpaceId(int listId) {
 			dto.setListId(listId);
+			return this;
+		}
+		
+		public UpdateDtoBuilder setlistName(String listName) {
+			dto.setListName(listName);
+			return this;
+		}
+		
+		public UpdateDtoBuilder setListDate(Date listDate) {
+			dto.setListDate(listDate);
+			return this;
+		}
+		
+		public UpdateDtoBuilder setListTime(Date listTime) {
+			dto.setListTime(listTime);
 			return this;
 		}
 		
@@ -124,9 +120,10 @@ public class ContentApi {
 	
 	@Data
 	public class Dto{
-		private Integer contentId;
-		private String title;
-		private String contentText;
 		private Integer listId;
+		private String listName;
+		private Date listDate;
+		private Date listTime;
+		private Integer spaceId;
 	}
 }
