@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.demo.security.UserDetailsImp;
+
 @Component
 public class RestTemplateAdapter {
 	
@@ -23,19 +25,24 @@ public class RestTemplateAdapter {
 	}
 	
 	
-	public <R,T> ResponseEntity<T> postForObjectWhenLogined(String url, R requestBody, Class<T> responseBodyClass,String token) {
+	public <R,T> T postForObjectWhenLogined(String url, R requestBody, Class<T> responseBodyClass,UserDetailsImp user) {
 		//リクエスト作成
 		RequestEntity<R> requestEntity = 
 		        RequestEntity
 		          .post(url)
-		          .header("X-AUTH-TOKEN",token)
+		          .header("X-AUTH-TOKEN",user.getTokenForServer())
 		          .body(requestBody);
 		
 		//実行
-		return restTemplate.exchange(requestEntity, responseBodyClass);
+		ResponseEntity<T> responseEntity = restTemplate.exchange(requestEntity, responseBodyClass);
+		user.setTokenForServer(
+				responseEntity
+					.getHeaders()
+					.getFirst("X-AUTH-TOKEN"));
+		return responseEntity.getBody();
 	}
 	
-	public <R,T> ResponseEntity<T> getForObjectWhenLogined(String url, R requestBody, Class<T> responseBodyClass,String token) {
+	public <R,T> T getForObjectWhenLogined(String url, R requestBody, Class<T> responseBodyClass,UserDetailsImp user) {
 		//変換
 		Map<String, String> requestBodyMap;
 		try {
@@ -56,11 +63,16 @@ public class RestTemplateAdapter {
 		RequestEntity<Void> requestEntity = 
 		        RequestEntity
 		          .get(url)
-		          .header("X-AUTH-TOKEN",token)
+		          .header("X-AUTH-TOKEN",user.getTokenForServer())
 		          .build();
 		
 		//実行
-		return restTemplate.exchange(requestEntity, responseBodyClass);
+		ResponseEntity<T> responseEntity = restTemplate.exchange(requestEntity, responseBodyClass);
+		user.setTokenForServer(
+				responseEntity
+					.getHeaders()
+					.getFirst("X-AUTH-TOKEN"));
+		return responseEntity.getBody();
 	}
 	
 	public <R ,T> ResponseEntity<T> postForObject(String url,R requestBody, Class<T> responseBodyClass) {		
