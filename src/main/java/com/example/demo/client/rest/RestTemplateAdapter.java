@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.demo.client.api.ApiUrlRootConfing;
 import com.example.demo.security.UserDetailsImp;
 
 @Component
@@ -29,7 +30,7 @@ public class RestTemplateAdapter {
 		//リクエスト作成
 		RequestEntity<R> requestEntity = 
 		        RequestEntity
-		          .post(url)
+		          .post(ApiUrlRootConfing.ROOT_URL + url)
 		          .header("X-AUTH-TOKEN",user.getTokenForServer())
 		          .body(requestBody);
 		
@@ -62,7 +63,7 @@ public class RestTemplateAdapter {
 		//リクエスト作成
 		RequestEntity<Void> requestEntity = 
 		        RequestEntity
-		          .get(url)
+		          .get(ApiUrlRootConfing.ROOT_URL + url)
 		          .header("X-AUTH-TOKEN",user.getTokenForServer())
 		          .build();
 		
@@ -79,7 +80,7 @@ public class RestTemplateAdapter {
 		//リクエスト作成
 		RequestEntity<R> requestEntity = 
 		        RequestEntity
-		          .post(url)
+		          .post(ApiUrlRootConfing.ROOT_URL + url)
 		          .body(requestBody);
 		
 		//実行
@@ -106,7 +107,7 @@ public class RestTemplateAdapter {
 		//リクエスト作成
 		RequestEntity<Void> requestEntity = 
 		        RequestEntity
-		          .get(url)
+		          .get(ApiUrlRootConfing.ROOT_URL + url)
 		          .build();
 		
 		//実行
