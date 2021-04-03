@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -27,12 +28,12 @@ public class RestTemplateAdapter {
 							.build();
 	}
 	
-	
 	public <R,T> T postForObjectWhenLogined(String url, R requestBody, Class<T> responseBodyClass,UserDetailsImp user) {
 		//リクエスト作成
 		RequestEntity<R> requestEntity = 
 		        RequestEntity
 		          .post(ApiUrlRootConfing.ROOT_URL + url)
+		          .contentType(MediaType.APPLICATION_JSON)
 		          .header("X-AUTH-TOKEN",user.getTokenForServer())
 		          .body(requestBody);
 		
@@ -116,6 +117,7 @@ public class RestTemplateAdapter {
 		RequestEntity<R> requestEntity = 
 		        RequestEntity
 		          .post(ApiUrlRootConfing.ROOT_URL + url)
+		          .contentType(MediaType.MULTIPART_FORM_DATA)
 		          .body(requestBody);
 		
 		//実行
