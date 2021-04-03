@@ -1,5 +1,5 @@
-package com.example.demo.client.rest;
+package com.example.demo.client.api.entity;
 
 
-public class VoidRequestBody {
+public class VoidEntity {
 }
