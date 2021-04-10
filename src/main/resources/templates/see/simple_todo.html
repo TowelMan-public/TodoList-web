@@ -1,0 +1,17 @@
+<th:brock th:fragment="simple_todo(SimpleForm)">
+	<div class="simple_todo_outer">
+		<div class="simple_todo_inner">
+			<h2 class="simple_todo_header">シンプルToDo</h2>
+			<div class="simple_todo_lists_scrollarea_outer">
+				<div class="simple_todo_lists_scrollarea_inner"
+					th:each="simple : ${SimpleForm}" th:object="${simple}">
+					
+					<div class="simple_todo_lists"
+						th:href="@{/web/see/simple_list/simple.listId}" 
+						th:text="*{simple.listName}">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:brock>

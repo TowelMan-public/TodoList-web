@@ -1,0 +1,12 @@
+<th:brock th:fragment="user_in_space(UpdateUserInSpaceForm)">
+	<h2>プロジェクトに加入しているユーザー詳細</h2>
+	<form th:action="@{/web/update/space/user}" method="post" th:object="${UpdateUserInSpaceForm}"> 
+		<div><input type="hidden" name="spaceId" th:field="*{spaceId}"/></div>
+		<div>ユーザー名：<input type="text" name="username" th:field="*{username}"/></div> <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" /><br>
+		<div>権限：<input type="text" name="authortyId" th:field="*{authortyId}"/></div> <div th:if="${#fields.hasErrors('authortyId')}" th:errors="*{authortyId}" /><br>
+		<input type="radio" name="authortyId" th:field="*{authortyId}" value="1" th:attr="checked=*{scopeId}==1 ? 'checked' : ''">管理者権限</input><br>
+		<input type="radio" name="authortyId" th:field="*{authortyId}" value="2" th:attr="checked=*{scopeId}==2 ? 'checked' : ''">作成者権限</input><br>
+		<input type="radio" name="authortyId" th:field="*{authortyId}" value="3" th:attr="checked=*{scopeId}==3 ? 'checked' : ''">普通権限</input><br>
+		<input type="submit" class="button" value="変更" />
+	</form><br>
+</th:brock>

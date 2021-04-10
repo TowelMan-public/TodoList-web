@@ -1,0 +1,40 @@
+<th:brock th:fragment="see_space(UpdateSpaceForm,spaceId,DeleteNoneUserInSpaceForm,ShowForm)">
+	<h2>プロジェクトについて</h2>
+	<form th:action="@{/web/update/space}" method="post" th:object="${UpdateSpaceForm}"> 
+		<div>プロジェクト名：<input type="text" name="spaceName" th:field="*{spaceName}"/></div> <div th:if="${#fields.hasErrors('spaceName')}" th:errors="*{spaceName}" /><br>
+		<div>プロジェクトID：<input type="readonly" name="spaceId" th:field="*{spaceId}"/></div> <div th:if="${#fields.hasErrors('spaceId')}" th:errors="*{spaceId}" /><br>
+		<input type="radio" name="scopeId" th:field="*{scopeId}" value="1" th:attr="checked=*{scopeId}==1 ? 'checked' : ''">パブリック</input><br>
+		<input type="radio" name="scopeId" th:field="*{scopeId}" value="2" th:attr="checked=*{scopeId}==2 ? 'checked' : ''">プロテクト</input><br>
+		<input type="radio" name="scopeId" th:field="*{scopeId}" value="3" th:attr="checked=*{scopeId}==3 ? 'checked' : ''">プライベート</input><br>
+		<input type="submit" class="button" value="変更" />
+		<form th:action="@{/web/delete/space}" method="post" th:object="${DeleteNoneUserInSpaceForm}" class="button_form"> 
+			<input type="hidden" name="id" th:value="${spaceId}" th:field="${DeleteNoneUserInSpaceForm.id}"/>
+			<input type="submit" class="delete_button" value="削除" />
+		</form>
+	</form><br><br>
+	<a th:href="@{/web/insert/simple}">・このプロジェクトにToDoリストを作成する</a><br>
+	<a th:href="@{/web/exit/space/{spaceId}(spaceId=${spaceId})}">・このプロジェクトから脱退する</a><br>
+	<a th:href="@{/web/insert/space/user/{spaceId}(spaceId=${spaceId})}">・このプロジェクトに新しくユーザーを加入させる</a><br><br>
+	<table border="1" align="center" class="see_contents_table parent_table">
+		<tr>
+			<th>ユーザー名</th>
+			<th>権限</th>
+			<th>削除</th>
+		</tr>
+		<tr th:each="form : ${ShowForm}" th:object="${form}">
+			<td th:href="@{/web/see/space/user/{spaceId}/{username}(spaceId=*{spaceId},username=*{username})}"
+				th:text="*{username}">
+			</td>
+			<td th:href="@{/web/see/space/user/{spaceId}/{username}(spaceId=*{spaceId},username=*{username})}"
+				th:text="*{権限}">
+			</td>
+			<td>
+				<form th:action="@{/web/delete/space/user}" method="post" th:object="${DeleteUserInSpaceForm}" class="button_form"> 
+					<input type="hidden" name="id" th:value="${form.spaceId}" th:field="${DeleteUserInSpaceForm.id}"/>
+					<input type="hidden" name="username" th:value="${form.username}" th:field="${DeleteNoneUserInSpaceForm.username}"/>
+					<input type="submit" class="delete_button" value="削除" />
+				</form>
+			</td>
+		</tr>
+</table>
+</th:brock>

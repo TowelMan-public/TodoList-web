@@ -1,0 +1,30 @@
+<th:block th:fragment="menu(spaceId)">
+	<ul class="menus">
+		<li class="menu"><a th:href="@{web/see/day}">見る</a>
+		  <ul>
+		     <li><a th:href="@{web/see/day}">自分総合</a></li>
+		     <li><a th:if="${spaceId!=null}" th:href="@{web/see/space/{spaceId}/day(spaceId=${spaceId})}">プロジェクト</a></li>
+		  </ul>
+		</li>
+		<li class="menu"><a th:href="@{web/insert/simple}">作成</a>
+		  <ul>
+		     <li><a th:href="@{web/insert/simple}">シンプルToDo</a></li>
+		     <li><a th:href="@{web/insert/space}">プロジェクト作成</a></li>
+		     <li><a th:if="${spaceId!=null}"  th:href="@{web/insert/list/{spaceId}(spaceId=${spaceId})}">リスト作成</a></li>
+		  </ul>
+		</li>
+		<li class="menu"><a th:href="@{web/serch/space/joined}">探す</a>
+		  <ul>
+		  	 <li><a th:href="@{web/serch/space/joined}">加入済みプロジェクト</a></li>
+		     <li><a th:href="@{web/serch/space/public}">公開プロジェクト</a></li>
+		  </ul>
+		</li>
+		<li class="menu"><a th:href="@{web/user/confing}">ユーザー</a>
+		  <ul>
+		     <li><a th:href="@{web/user/confing}">設定</a></li>
+		     <li><a th:href="@{logout}">ログアウト</a></li>
+		     <li><a th:href="@{web/user/withdrawal}">退会する</a></li>
+		  </ul>
+		</li>
+	</ul>
+</th:block>

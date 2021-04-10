@@ -1,0 +1,14 @@
+<th:brock th:fragment="see_list_in_space_year(ShowForm,spaceId)">
+	<table border="1" align="center" class="see_contents_table parent_table">
+	    <tr >
+			<th>月</th>
+			<th>件数</th>
+		</tr>
+		<tr th:each="form : ${ShowForm}" th:object="${form}">
+			<td th:text="*{month} + '月'"
+				th:href="@{/web/see/space/{spaceId}/month/{assignmentDate}(spaeId=${spaceId},assignmentDate=*{assignmentDate})}"></td>
+			<td th:text="*{listCount} + '件'"
+				th:href="@{/web/see/space/{spaceId}/month/{assignmentDate}(spaeId=${spaceId},assignmentDate=*{assignmentDate})}"></td>
+		</tr>
+	</table>
+</th:brock>

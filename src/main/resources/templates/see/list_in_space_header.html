@@ -1,0 +1,38 @@
+<th:brock th:fragment="see_header(HeaderSpaceForm,spaceId)">
+	<div class="see_contents_header">
+		<div class="see_content_header_space_name"
+			th:href="@{/web/see/space/{spaceId}/day}"
+			th:text="${HeaderSpaceForm.getSpaceName()}">
+		</div>
+		<div class="see_contents_header_date" th:object="${HeaderSpaceForm}">
+			<div class="see_contents_header_date_button button"
+				th:href="@{/web/see/space/{spaceId}/year/{assignmentDate}(spaceId=${SpaceId},assignmentDate=HeaderSpaceForm.getYear())}">
+				年
+			</div>
+			
+			<div class="see_contents_header_date_button button"
+				th:href="@{/web/see/space/{spaceId}/month/{assignmentDate}(spaceId=${SpaceId},assignmentDate=HeaderSpaceForm.getMonth())}">
+				月
+			</div>
+			
+			<div class="see_contents_header_date_date_control button"
+				th:href="@{/web/see/space/{spaceId}/{assignmentType}/{assignmentDate}(spaceId=${SpaceId},assignmentType=${HeaderSpaceForm.getAssignmentType},assignmentDate=HeaderSpaceForm.getBackDate())}">
+				◀
+			</div>
+			
+			<div class="see_contents_header_date_date_view"
+				th:text="${HeaderSpaceForm.getAssignmentDate}"></div>
+			
+			<div class="see_contents_header_date_date_control button"
+				th:href="@{/web/see/space/{spaceId}/{assignmentType}/{assignmentDate}(spaceId=${SpaceId},assignmentType=${HeaderSpaceForm.getAssignmentType},assignmentDate=HeaderSpaceForm.getNextDate())}">
+				▶
+			</div>
+			
+			<div class="see_contents_header_date_button button"
+				th:href="@{/web/see/space/{spaceId}/day/{assignmentDate}(spaceId=${SpaceId},assignmentDate=HeaderSpaceForm.getDay())}">
+				日
+			</div>
+		</div>
+	</div>
+	<br>
+</th/brock>

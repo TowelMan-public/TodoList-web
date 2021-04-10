@@ -1,0 +1,10 @@
+<th:brock th:fragment="insert_space(InsertSpaceForm)">
+	<h2>プロジェクトの作成</h2>
+	<form th:action="@{/web/insert/space}" method="post" th:object="${InsertSpaceForm}"> 
+		<div>プロジェクト名：<input type="text" name="spaceName" th:field="*{spaceName}"/></div> <div th:if="${#fields.hasErrors('spaceName')}" th:errors="*{spaceName}" /><br>
+		<input type="radio" name="scopeId" th:field="*{scopeId}" value="1">パブリック</input><br>
+		<input type="radio" name="scopeId" th:field="*{scopeId}" value="2" checked="checked">プロテクト</input><br>
+		<input type="radio" name="scopeId" th:field="*{scopeId}" value="3">プライベート</input><br>
+		<input type="submit" class="button" value="作成" />
+	</form><br>
+<th:brock>

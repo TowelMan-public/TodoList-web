@@ -1,0 +1,8 @@
+<th:brock th:fragment="insert_content(listId,InsertContentForm)">
+	<h2>内容の追加</h2>
+	<form th:action="@{/web/insert/content/${listId}(listId=${listId})}" method="post" th:object="${InsertContentForm}"> 
+		<div>内容のタイトル：<input type="text" name="contentTitle" th:field="*{contentTitle}"/></div> <div th:if="${#fields.hasErrors('contentTitle')}" th:errors="*{contentTitle}" /><br>
+		<div>内容の詳細：<input type="text" name="contentText" th:field="*{contentText}"/></div> <div th:if="${#fields.hasErrors('contentText')}" th:errors="*{contentText}" /><br>
+		<input type="submit" class="button" value="登録" />
+	</form><br>
+</brock>

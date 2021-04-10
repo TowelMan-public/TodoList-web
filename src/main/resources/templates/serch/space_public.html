@@ -1,0 +1,15 @@
+<th:brock th:fragment="serch_space_public(ShowForm)">
+	<h2>パブリックスペース一覧</h2>
+	<table border="1" align="center" class="see_contents_table parent_table">
+		<tr>
+			<th>スペースId</th>
+			<th>スペース名</th>
+			<th>加入</th>
+		</tr>
+		<tr th:each="form : ${ShowForm}" th:object="${form}">
+			<td th:text="*{spaceId}"></td>
+			<td th:text="*{spaceName}"></td>
+			<td><div class="dbutton" th:href="@{/web/join/space/public/{spaceId}(spaceId=*{spaceId})}">加入</div></td>
+		</tr>
+	</table>
+</th:brock>

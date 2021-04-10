@@ -1,0 +1,24 @@
+<table border="1" align="center" class="see_contents_table parent_table">
+	<tr >
+		<th>時間</th>
+		<th>リスト名</th>
+		<th>内容</th>
+	</tr>
+	<th:block th:each="form : ${ShowForm}" th:object="${form}">
+		<tr>
+			<td th:attr="rowspan=${*{contentCount} + 1}"
+				th:text="*{listTime}"
+				th:style="*{isAffterDateList} ? 'background-color: #ff0000' : ''"
+				th:href="@{/web/see/list/{listId}(listId=*{listId})}"></td>
+			<td th:attr="rowspan=${*{contentCount} + 1}"
+				th:text="*{listName}"
+				th:style="*{isAffterDateList} ? 'background-color: #ff0000' : ''"
+				th:href="@{/web/see/list/{listId}(listId=*{listId})}"></td>
+		</tr>
+		<tr th:each="ContentForm : ${form.getContentList}" th:object="${ContentForm}">
+			<td th:text="*{contentTitle}"
+				th:style="*{isAffterDateList} ? 'background-color: #ff0000' : ''"
+				th:href="@{/web/see/content/{contentId}(contentId=*{contentId})}"></td>
+		</tr>
+	</th:block>
+</table>

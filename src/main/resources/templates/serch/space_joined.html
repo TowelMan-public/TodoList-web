@@ -1,0 +1,13 @@
+<th:brock th:fragment="serch_space_joined(ShowForm)">
+	<h2>加入しているスペース一覧</h2>
+	<table border="1" align="center" class="see_contents_table parent_table">
+		<tr>
+			<th>スペースId</th>
+			<th>スペース名</th>
+		</tr>
+		<tr th:each="form : ${ShowForm}" th:object="${form}">
+			<td th:href="@{/web/see/space/*{spaceId}/day(spaceId=${spaceId})}" th:text="*{spaceId}"></td>
+			<td th:href="@{/web/see/space/*{spaceId}/day(spaceId=${spaceId})}" th:text="*{spaceName}"></td>
+		</tr>
+	</table>
+</th:brock>

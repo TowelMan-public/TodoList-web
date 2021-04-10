@@ -1,0 +1,250 @@
+body{
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 auto;
+	max-width: 100000px;
+	text-align: center;
+	align-items: center;
+	background-color: #fff8f8;
+}
+
+h1{
+	font-size: 3em;
+}
+
+/*//////////////////////
+//
+//
+//
+///////////////////////*/
+
+.see {
+  display: flex;
+  align-items: center;
+}
+
+/*//////////////////////
+//
+//
+//
+///////////////////////*/
+
+.simple_todo_outer{
+	align-self: flex-start;
+	margin: 0 50px;
+	margin-top: 50px;
+	flex-basis: 200px;
+	border: 4px solid #b0af9f;
+	border-radius: 5vh;
+}
+
+.simple_todo_inner {
+	margin: 0;
+	padding: 5px;
+	border: 7px solid #afffaf;
+	background-color: #dfffdf;
+	border-radius: 5vh;
+}
+
+.simple_todo_lists{
+	border: 3px solid #000000;
+	font-size: 1.5em;
+	background-color: #efaaef;
+	min-width: 180px;
+}
+
+.simple_todo_lists_scrollarea_outer{
+	margin: 0;
+	height: 500px;
+	overflow: hidden;
+}
+
+.simple_todo_lists_scrollarea_inner{
+	margin: 0;
+	height: 500px;
+	width: calc(100% + 18px);
+	overflow-y: scroll;
+}
+
+.simple_todo_header{
+	margin: -0.8em 0 0em 0;
+	color: #ffffff;     
+	margin-top: -1.2em;
+	font-size: 1.65em;
+	text-shadow    : 
+       2px  2px 10px #66ff66,
+      -2px  2px 10px #66ff66,
+       2px -2px 10px #66ff66,
+      -2px -2px 10px #66ff66,
+       2px  0px 10px #66ff66,
+       0px  2px 10px #66ff66,
+      -2px  0px 10px #66ff66,
+       0px -2px 10px #66ff66;
+}
+
+.simple_todo_lists_nothing{
+	font-size: 1em;
+}
+
+/*//////////////////////
+//
+//
+//
+///////////////////////*/
+
+.see_contents {
+	align-self: flex-start;
+	margin: 0 50px 10px 50px;
+	flex-basis: 800px;
+	background-color: #eaefff;
+}
+
+.see_content_header_space_name{
+	font-size: 1.5em;
+	max-width: 500px;
+	display: inline-block;
+	border:double 10px #000000;
+	margin-bottom: 10px;
+}
+
+.see_content_header_space_name:hover{
+	box-shadow: 0 0 9px #000000;
+    border: 1px solid #ffffff;
+}
+
+.see_contents_header_date{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.see_contents_header_date_button{
+	align-self: flex-center;
+	flex-basis: 50px;
+	hight: 50px;
+	border: 3px solid #000000;
+	font-size: 1.5em;
+	margin: 0 1.1em 0 1.1em;
+}
+
+.see_contents_header_date_date_view{
+	margin: 0;
+	border: double 5px #000000;
+	font-size: 1.5em;
+}
+
+.see_contents_header_date_date_control{
+	font-size: 3.0em;
+	margin: 0;
+}
+
+/*//////////////////////
+//
+//
+//
+///////////////////////*/
+
+.see_contents_table{
+	border-collapse: collapse;
+	font-size: 1.5em;
+	width: 750px;
+}
+
+.delete_button {
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 9pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  background    : #6666ff;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #6666ff;    /* 枠の指定 */
+}
+.delete_button:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  color         : #6666ff;     /* 背景色     */
+  background    : #ff0000;     /* 文字色     */
+}
+
+.button {
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 9pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  background    : #6666ff;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #6666ff;    /* 枠の指定 */
+}
+.button:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  color         : #6666ff;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+}
+
+input[type="text"],
+input[type="password"]{
+	padding: 0.8em;
+    outline: none;
+    border: 1px solid #DDD;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 18px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus{
+	box-shadow: 0 0 9px #db9834;
+    border: 1px solid #db9834;
+}
+
+
+/*//////////////////////
+//
+//
+//
+///////////////////////*/
+.menus{
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+	max-width: 1000px;
+	margin: auto auto auto auto;
+}
+
+.menus li {
+	align-self: flex-start;
+	background: #ffee00;
+}
+.menus li a {
+   display: block;
+   width: 220px;
+   padding: 10px;
+}
+.menus li a:hover {
+   background: #ffeedd;
+}
+.menus li:hover > ul {
+   display: block;
+}
+.menus ul {
+	list-style-type: none;
+	display: none;
+	top: 38px;
+	width: 220px;
+}
+
+.button_form{
+	flex: inline;
+}
+
+.parent_table tr:nth-child(2n+1) td {
+  background-color: #ffdaf8;
+}

@@ -1,0 +1,34 @@
+<th:brock th:fragment="simple_list(UpdateSimpleListForm,listId,DeleteNoneUserInSpaceForm,ShowForm)">
+	<h2>シンプルToDoリストとその内容の一覧</h2>
+	<form th:action="@{/web/update/list}" method="post" th:object="${UpdateSimpleListForm}"> 
+		<input type="hidden" name="listId" th:field="*{listId}"/>
+		<div>リスト名：<input type="text" name="listName" th:field="*{listName}"/></div> <div th:if="${#fields.hasErrors('listName')}" th:errors="*{listName}" /><br>
+		<input type="submit" class="button" value="変更" />
+		<form th:action="@{/web/delete/list}" method="post" th:object="${DeleteNoneUserInSpaceForm}" class="button_form"> 
+			<input type="hidden" name="id" th:value="${listId}" th:field="${DeleteNoneUserInSpaceForm.id}"/>
+			<input type="submit" class="delete_button" value="削除" />
+		</form>
+	</form><br>
+	<a th:href="@{/web/insert/content/{listId}(listId=${listId})}">・このリスト内に新しく内容を登録する</a><br><br>
+	<table border="1" align="center" class="see_contents_table parent_table">
+		<tr>
+			<th>タイトル</th>
+			<th>内容</th>
+			<th>削除</th>
+		</tr>
+		<tr th:each="form : ${ShowForm}" th:object="${form}">
+			<td th:href="@{/web/see/content/{contentId}(contentId=*{contentId})}"
+				th:text="*{contentTitle}">
+			</td>
+			<td th:href="@{/web/see/content/{contentId}(contentId=*{contentId})}"
+				th:text="*{contentText}">
+			</td>
+			<td>
+				<form th:action="@{/web/delete/content}" method="post" th:object="${DeleteUserInSpaceForm}" class="button_form"> 
+					<input type="hidden" name="id" th:value="${form.contentId}" th:field="${DeleteUserInSpaceForm.id}"/>
+					<input type="submit" class="delete_button" value="削除" />
+				</form>
+			</td>
+		</tr>
+	</table>
+</th:brock>

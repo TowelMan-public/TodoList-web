@@ -1,0 +1,23 @@
+<th:brock th:fragment="see_list_in_space_month(ShowForm,spaceId)">
+	<table border="1" align="center" class="see_contents_table parent_table">
+	    <tr>
+			<th>日曜日</th>
+			<th>月曜日</th>
+			<th>火曜日</th>
+			<th>水曜日</th>
+			<th>木曜日</th>
+			<th>金曜日</th>
+			<th>土曜日</th>
+		</tr>
+		<tr th:each="form : ${ShowForm}" th:object="${form}">
+			<td>
+				<table th:each="i : ${#numbers.sequence(0, 6)}">
+					<tr><th th:text="${form.get(i).getDate} + '日'"
+							th:href="@{/web/space/{spaceId}/day/{assignmentDate}(spaceId=${spaceId},assignmentDate=${form.get(i).getAssignmentDate})}"></th><tr>
+					<tr><td th:text="${form.get(i).getListCount} + '件'"
+							th:href="@{/web/space/{spaceId}/day/{assignmentDate}(spaceId=${spaceId},assignmentDate=${form.get(i).getAssignmentDate})}"></td></tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</th:brock>

@@ -1,0 +1,10 @@
+<th:brock th:fragment="insert_user_in_space(InsertUserInSpaceForm,spaceId)">
+	<h2>プロジェクトにユーザーを加入させる</h2>
+	<form th:action="@{/insert/space/user/{spaceId}(spaceId=${spaceId})}" method="post" th:object="${InsertUserInSpaceForm}"> 
+		<div>ユーザー名：<input type="text" name="username" th:field="*{username}"/></div> <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" /><br>
+		<div>権限：<input type="text" name="authortyId" th:field="*{authortyId}"/></div> <div th:if="${#fields.hasErrors('authortyId')}" th:errors="*{authortyId}" /><br>
+		<input type="radio" name="authortyId" th:field="*{authortyId}" value="1">管理者権限</input><br>
+		<input type="radio" name="authortyId" th:field="*{authortyId}" value="3 checked="checked"">普通権限</input><br>
+		<input type="submit" class="button" value="加入" />
+	</form><br>
+</th:brock>
