@@ -44,5 +44,9 @@ public class UserDetailsServiceImp{
 	public void updatePassword(UserDetailsImp user, UpdatePassword form) {
 		userApi.updatePassword(user, form.getNewPassword(), form.getOneMorePassword());
 	}
+
+	public void withdrawal(UserDetailsImp user) {
+		userApi.deleteUser(user);
+	}
 	
 }

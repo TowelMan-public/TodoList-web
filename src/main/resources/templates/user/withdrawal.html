@@ -31,6 +31,9 @@
 			  color         : #ffffff;     /* 背景色     */
 			  background    : #ff0000;      /* 文字色     */
 			}
+			.button_form{
+				flex: inline;
+			}
         </style>
 	</head>
 	
@@ -40,6 +43,8 @@
 			本当に退会してしまいますか？<br>
 			この操作は取り消せません！！
 		</h1>
-		<div class="button" th:href="@{web/withdrawal}">退会する</div>
+		<form th:action="@{web/user/withdrawal}" method="post" class="button_form"> 
+			<input type="submit" class="button" value="退会する" />
+		</form>
 	<body>
 </html>
