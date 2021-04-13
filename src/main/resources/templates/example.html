@@ -14,56 +14,56 @@
 		<div class="see">
 			<th:brock th:insert="see::simple_todo(SimpleForm=${SimpleForm})"></th:brock>
 			<div class="see_contents">
-				<th:brock th:insert="see/list_in_space_header::see_header(spaceId=${spaceId})"></th:brock>
+				<th:brock th:insert="see/list_in_space_header::see_header(HeaderSpaceForm=${HeaderSpaceForm},spaceId=${spaceId})"></th:brock>
 				
 				<th:brock
 					th:if="${WebSeeContentType}=='see_list_in_space_day'"
-				 	th:insert="see/list_in_space_day::see_list_in_space_day(HeaderSpaceForm=${HeaderSpaceForm},spaceId=${spaceId})"></th:brock>
+				 	th:insert="see/list_in_space_day::see_list_in_space_day(ShowForm=${ShowForm})"></th:brock>
 				<th:brock
 					th:if="${WebSeeContentType}=='see_list_in_space_month'"
-				 	th:insert="see/list_in_space_month::see_list_in_space_month(ShowForm,spaceId)"></th:brock>
+				 	th:insert="see/list_in_space_month::see_list_in_space_month(ShowForm=${ShowForm},spaceId=${spaceId})"></th:brock>
 				<th:brock
 					th:if="${WebSeeContentType}=='see_list_in_space_year'"
-				 	th:insert="see/list_in_space_year::see_list_in_space_year(ShowForm,spaceId)"></th:brock>
+				 	th:insert="see/list_in_space_year::see_list_in_space_year(ShowForm=${ShowForm},spaceId=${spaceId})"></th:brock>
 				<th:brock
 					th:if="${WebSeeContentType}=='see_list'"
-				 	th:insert="see/list::see_list(ShowForm,UpdateListForm,listId,DeleteNoneUserInSpaceForm)"></th:brock>
+				 	th:insert="see/list::see_list(ShowForm=${ShowForm},UpdateListForm=${UpdateListForm},listId=${listId},DeleteNoneUserInSpaceForm=${DeleteNoneUserInSpaceForm})"></th:brock>
 				<th:brock
 					th:if="${WebSeeContentType}=='see_content'"
-				 	th:insert="see/content::see_content(UpdateContentForm,contentId,DeleteNoneUserInSpaceForm)"></th:brock>
+				 	th:insert="see/content::see_content(UpdateContentForm=${UpdateContentForm},contentId=${contentId},DeleteNoneUserInSpaceForm=${DeleteNoneUserInSpaceForm})"></th:brock>
 				<th:brock
 					th:if="${WebSeeContentType}=='see_space'"
-				 	th:insert="see/space::see_space(UpdateSpaceForm,spaceId,DeleteNoneUserInSpaceForm,ShowForm)"></th:brock>
+				 	th:insert="see/space::see_space(UpdateSpaceForm=${UpdateSpaceForm},spaceId=${spaceId},DeleteNoneUserInSpaceForm=${DeleteNoneUserInSpaceForm},ShowForm=${ShowForm})"></th:brock>
 				 <th:brock
 					th:if="${WebSeeContentType}=='user_in_space'"
-				 	th:insert="see/user_in_space::user_in_space(UpdateUserInSpaceForm)"></th:brock>
+				 	th:insert="see/user_in_space::user_in_space(UpdateUserInSpaceForm=${UpdateUserInSpaceForm})"></th:brock>
 			 	<th:brock
 					th:if="${WebSeeContentType}=='simple_list'"
-				 	th:insert="see/simple_list::simple_list(UpdateSimpleListForm,listId,DeleteNoneUserInSpaceForm,ShowForm)"></th:brock>
+				 	th:insert="see/simple_list::simple_list(UpdateSimpleListForm=${UpdateSimpleListForm},listId=${listId},DeleteNoneUserInSpaceForm=${DeleteNoneUserInSpaceForm},ShowForm=${ShowForm})"></th:brock>
 				<th:brock
 					th:if="${WebSeeContentType}=='insert_content'"
-				 	th:insert="insert/content::insert_content(listId,InsertContentForm)"></th:brock>
+				 	th:insert="insert/content::insert_content(listId=${listId},InsertContentForm=${InsertContentForm})"></th:brock>
 				<th:brock
 					th:if="${WebSeeContentType}=='insert_space'"
-				 	th:insert="insert/space::insert_space(InsertSpaceForm)"></th:brock>
+				 	th:insert="insert/space::insert_space(InsertSpaceForm=${InsertSpaceForm})"></th:brock>
 				<th:brock
 					th:if="${WebSeeContentType}=='insert_list'"
-				 	th:insert="insert/list::insert_list(InsertListForm,spaceId)"></th:brock>
+				 	th:insert="insert/list::insert_list(InsertListForm=${InsertListForm},spaceId=${spaceId})"></th:brock>
 				<th:brock
 					th:if="${WebSeeContentType}=='insert_user_in_space'"
-				 	th:insert="insert/user_in_space::insert_user_in_space(InsertUserInSpaceForm,spaceId)"></th:brock>
+				 	th:insert="insert/user_in_space::insert_user_in_space(InsertUserInSpaceForm=${InsertUserInSpaceForm},spaceId=${spaceId})"></th:brock>
 				 <th:brock
 					th:if="${WebSeeContentType}=='simple'"
-				 	th:insert="insert/simple::simple(InsertSimpleForm)"></th:brock>
+				 	th:insert="insert/simple::simple(InsertSimpleForm=${InsertSimpleForm})"></th:brock>
 				<th:brock
 					th:if="${WebSeeContentType}=='serch_space_joined'"
-				 	th:insert="serch/space_joined::serch_space_joined(ShowForm)"></th:brock>
+				 	th:insert="serch/space_joined::serch_space_joined(ShowForm=${ShowForm})"></th:brock>
 				<th:brock
 					th:if="${WebSeeContentType}=='serch_space_public'"
-				 	th:insert="serch/space_public::serch_space_public(ShowForm)"></th:brock>
+				 	th:insert="serch/space_public::serch_space_public(ShowForm=${ShowForm})"></th:brock>
 				<th:brock
 					th:if="${WebSeeContentType}=='user_confing'"
-				 	th:insert="user/confing::user_confing(UpdateUsername,UpdatePassword)"></th:brock>
+				 	th:insert="user/confing::user_confing(UpdateUsername=${UpdateUsername},UpdatePassword=${UpdatePassword})"></th:brock>
 			</div>
 		</div>
 	</body>
