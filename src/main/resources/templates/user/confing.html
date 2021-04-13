@@ -11,7 +11,7 @@
 		<form th:action="@{/web/user/confing/update/password}" method="post" th:object="${UpdatePassword}"> 
 			<div th:if="${#fields.hasErrors('notMatchesPassword')}" th:field="*{notMatchesPassword}" th:errors="*{notMatchesPassword}"></div>
 			<div>新しいパスワード：<input type="text" name="newPassword" th:field="*{newPassword}"/></div> <div th:if="${#fields.hasErrors('newPassword')}" th:errors="*{newPassword}" /><br>
-			<div>パスワード（繰り返し）：<input type="text" name="oneMorepassword" th:field="*{oneMorepassword}"/></div> <div th:if="${#fields.hasErrors('oneMorepassword')}" th:errors="*{oneMorepassword}" /><br>
+			<div>パスワード（繰り返し）：<input type="text" name="oneMorepassword" th:field="*{oneMorePassword}"/></div> <div th:if="${#fields.hasErrors('oneMorepassword')}" th:errors="*{oneMorepassword}" /><br>
 			<input type="submit" class="button" value="変更" />
 		</form><br>
 
