@@ -29,6 +29,12 @@ public class UserApi {
 				.getFirst("X-AUTH-TOKEN");
 	}
 	
+	public void logout(UserDetailsImp user) {
+		final String URL = ROOT_URL + "/logout";
+		
+		restTemplateAdapter.postForObjectWhenLogined(URL, new VoidEntity(), VoidEntity.class, user);
+	}
+	
 	public void deleteUser(UserDetailsImp user) {
 		final String URL = ROOT_URL + "/delete";
 		
