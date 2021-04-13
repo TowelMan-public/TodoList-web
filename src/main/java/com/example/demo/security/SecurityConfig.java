@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
             .and()
             .logout()
+            	.logoutUrl(UrlConfig.ROOT_URL + "/logout")
                 //ログアウト時の遷移先 POSTでアクセス
                 .logoutSuccessUrl(LOGIN_PAGE);
     }
