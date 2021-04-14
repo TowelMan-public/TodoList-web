@@ -49,7 +49,7 @@ public class InsertListControl {
 		}
 		
 		//処理
-		listService.insertlist(user,form,spaceId);
+		listService.insertList(user,form,spaceId);
 		
 		//リダイレクト
 		return "redirect:" + URL.replace("spaceId",spaceId.toString());

@@ -12,7 +12,7 @@ public class ListService {
 	@Autowired
 	ListApi listApi;
 
-	public void insertlist(UserDetailsImp user, InsertListForm form, Integer spaceId) {
+	public void insertList(UserDetailsImp user, InsertListForm form, Integer spaceId) {
 		listApi.insertList(user, new ListApi(). new InsertDtoBuilder()
 										.setSpaceId(spaceId)
 										.setListTime(form.getListTimeToDate())
