@@ -51,7 +51,7 @@ public class ModelSetter {
 		return UrlConfig.ROOT_URL + url;
 	}
 	
-	public ModelSetter setShowForm(List<Object> showForm){
+	public ModelSetter setShowForm(List<?> showForm){
 		model.addAttribute("ShowForm", showForm);
 		return this;
 	}
