@@ -6,5 +6,6 @@ import lombok.Data;
 public class UserInSpaceEntity {
 	private Integer spaceId;
     private Integer userId;
+    private String username;
     private Integer authorityId;
 }
