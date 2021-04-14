@@ -38,7 +38,7 @@ public class InsertContentControl {
 	}
 	
 	@PostMapping
-	public String insertList(@AuthenticationPrincipal UserDetailsImp user, @PathVariable("listId") Integer listId,
+	public String insertContent(@AuthenticationPrincipal UserDetailsImp user, @PathVariable("listId") Integer listId,
 			@Validated InsertContentForm form, BindingResult result, RedirectAttributes redirect) {
 		//入力ﾁｪｯｸ
 		if(result.hasErrors()) {
