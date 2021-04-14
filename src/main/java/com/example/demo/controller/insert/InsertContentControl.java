@@ -28,7 +28,7 @@ public class InsertContentControl {
 	
 	@GetMapping
 	public String showPage(@AuthenticationPrincipal UserDetailsImp user, @PathVariable("listId") Integer listId , Model model) {
-		return new ModelSetter(model,ModelSetter.PAGE_INSERT_LIST)
+		return new ModelSetter(model,ModelSetter.PAGE_INSERT_CONTENT)
 					.setListId(listId)
 					
 					.setInsertContentForm(
