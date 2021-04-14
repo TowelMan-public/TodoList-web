@@ -6,8 +6,11 @@
 			<th>スペース名</th>
 		</tr>
 		<tr th:each="form : ${ShowForm}" th:object="${form}">
-			<td th:href="@{/web/see/space/*{spaceId}/day(spaceId=${spaceId})}" th:text="*{spaceId}"></td>
-			<td th:href="@{/web/see/space/*{spaceId}/day(spaceId=${spaceId})}" th:text="*{spaceName}"></td>
+			<td th:href="@{/web/see/space/*{spaceId}/day(spaceId=*{spaceId})}" th:text="*{spaceId}"></td>
+			<td th:href="@{/web/see/space/*{spaceId}/day(spaceId=*{spaceId})}" th:text="*{spaceName}"></td>
+			<td th:if="${form.scopeId == 1}" th:href="@{/web/see/space/*{spaceId}/day(spaceId=*{spaceId})}" th:text="PUBLIC"></td>
+			<td th:if="${form.scopeId == 2}" th:href="@{/web/see/space/*{spaceId}/day(spaceId=*{spaceId})}" th:text="PROTECTED"></td>
+			<td th:if="${form.scopeId == 3}" th:href="@{/web/see/space/*{spaceId}/day(spaceId=*{spaceId})}" th:text="PRIVATE"></td>
 		</tr>
 	</table>
 </th:brock>
