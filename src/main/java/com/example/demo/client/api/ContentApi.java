@@ -70,8 +70,8 @@ public class ContentApi {
 			dto = new Dto();
 		}
 		
-		public InsertDtoBuilder setContentId(int contentId) {
-			dto.setContentId(contentId);
+		public InsertDtoBuilder setListId(int listId) {
+			dto.setListId(listId);
 			return this;
 		}
 		
