@@ -38,7 +38,7 @@ public class UserInSpaceApi {
 		return restTemplateAdapter.getForObjectsWhenLogined(URL, new VoidEntity(), UserInSpaceEntity.class, user);
 	}
 	
-	public void insertUserInSpace(UserDetailsImp user, DotBuilder builder) {
+	public void insertUserInSpace(UserDetailsImp user, DtoBuilder builder) {
 		final String URL = ROOT_URL + "/insert";
 		
 		Dto dto = builder.build();
@@ -46,7 +46,7 @@ public class UserInSpaceApi {
 		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
 	}
 	
-	public void updateUserAuthortyInSpace(UserDetailsImp user, DotBuilder builder) {
+	public void updateUserAuthortyInSpace(UserDetailsImp user, DtoBuilder builder) {
 		final String URL = ROOT_URL + "/update";
 		
 		Dto dto = builder.build();
@@ -54,24 +54,24 @@ public class UserInSpaceApi {
 		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
 	}
 	
-	public class DotBuilder{
+	public class DtoBuilder{
 		private Dto dto;
 		
-		public DotBuilder() {
+		public DtoBuilder() {
 			dto = new Dto();
 		}
 		
-		public DotBuilder setSpaceId(int spaceId) {
+		public DtoBuilder setSpaceId(int spaceId) {
 			dto.setSpaceId(spaceId);
 			return this;
 		}
 		
-		public DotBuilder setUsername(String username) {
+		public DtoBuilder setUsername(String username) {
 			dto.setUsername(username);
 			return this;
 		}
 		
-		public DotBuilder setAuthortyId(int authortyId) {
+		public DtoBuilder setAuthortyId(int authortyId) {
 			dto.setAuthortyId(authortyId);
 			return this;
 		}
