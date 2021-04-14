@@ -2,6 +2,8 @@
 	<h2>リストの追加</h2>
 	<form th:action="@{/web/insert/simple}" method="post" th:object="${InsertSimpleForm}"> 
 		<div>リスト名：<input type="text" name="listName" th:field="*{listName}"/></div> <div th:if="${#fields.hasErrors('listName')}" th:errors="*{listName}" /><br>
+		<div>日付：<input type="text" name="listDate" th:field="*{listDate}"/></div> <div th:if="${#fields.hasErrors('listDate')}" th:errors="*{listDate}" /><br>
+		<div>時間：<input type="text" name="listTime" th:field="*{listTime}"/></div> <div th:if="${#fields.hasErrors('listTime')}" th:errors="*{listTime}" /><br>
 		<input type="submit" class="button" value="追加"/>
 	</form><br>
 </th:brock>
