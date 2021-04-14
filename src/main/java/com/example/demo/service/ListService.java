@@ -13,7 +13,7 @@ public class ListService {
 	ListApi listApi;
 
 	public void insertList(UserDetailsImp user, InsertListForm form, Integer spaceId) {
-		listApi.insertList(user, new ListApi(). new InsertDtoBuilder()
+		listApi.insertList(user, listApi. new InsertDtoBuilder()
 										.setSpaceId(spaceId)
 										.setListTime(form.getListTimeToDate())
 										.setListDate(form.getListDateToDate())
