@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.List;
+
 import org.springframework.ui.Model;
 
 import com.example.demo.form.delete.*;
@@ -49,12 +51,12 @@ public class ModelSetter {
 		return UrlConfig.ROOT_URL + url;
 	}
 	
-	public ModelSetter setShowForm(Object showForm){
+	public ModelSetter setShowForm(List<Object> showForm){
 		model.addAttribute("ShowForm", showForm);
 		return this;
 	}
 	
-	public ModelSetter setSimpleForm(SimpleForm simpleForm){
+	public ModelSetter setSimpleForm(List<SimpleForm> simpleForm){
 		model.addAttribute("SimpleForm", simpleForm);
 		return this;
 	}
