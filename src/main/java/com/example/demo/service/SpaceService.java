@@ -1,10 +1,13 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.client.api.PublicSpaceApi;
 import com.example.demo.client.api.SpaceApi;
+import com.example.demo.client.api.entity.SpaceEntity;
 import com.example.demo.form.insert.InsertSpaceForm;
 import com.example.demo.security.UserDetailsImp;
 
@@ -19,5 +22,9 @@ public class SpaceService {
 		spaceApi.makeSpace(user,
 				form.getSpaceName(),
 				Integer.parseInt(form.getScopeId()));
+	}
+
+	public List<SpaceEntity> getPublicSpace(UserDetailsImp user) {
+		return publicSpaceApi.getPublicSpace(user);
 	}	
 }
