@@ -112,11 +112,6 @@ public class ContentApi {
 			return this;
 		}
 		
-		public UpdateDtoBuilder setContentText(Integer listId) {
-			dto.setListId(listId);
-			return this;
-		}
-		
 		public Dto build() {
 			return dto;
 		}
