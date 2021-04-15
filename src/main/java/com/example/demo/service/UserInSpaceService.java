@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.client.api.UserInSpaceApi;
 import com.example.demo.client.api.entity.UserInSpaceEntity;
+import com.example.demo.form.delete.DeleteUserInSpaceForm;
 import com.example.demo.form.insert.InsertUserInSpaceForm;
 import com.example.demo.form.update.UpdateUserInSpaceForm;
 import com.example.demo.security.UserDetailsImp;
@@ -44,5 +45,15 @@ public class UserInSpaceService {
 															 .setUsername(form.getUsername())
 															 .setAuthortyId(
 																	 Integer.parseInt(form.getAuthortyId())));
+	}
+
+	public List<UserInSpaceEntity> getUsersInSpace(UserDetailsImp user, Integer spaceId) {
+		return userInSpaceApi.getUserInSpace(user, spaceId);
+	}
+
+	public void deleteUserInSpace(UserDetailsImp user, DeleteUserInSpaceForm form) {
+		userInSpaceApi.deleteUserInSpace(user,
+				Integer.parseInt(form.getId()),
+				form.getUsername());
 	}
 }

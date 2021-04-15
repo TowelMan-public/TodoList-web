@@ -33,7 +33,7 @@
 				 	th:insert="see/content::see_content(UpdateContentForm=${UpdateContentForm},contentId=${contentId},DeleteNoneUserInSpaceForm=${DeleteNoneUserInSpaceForm})"></th:brock>
 				<th:brock
 					th:if="${WebSeeContentType}=='see_space'"
-				 	th:insert="see/space::see_space(UpdateSpaceForm=${UpdateSpaceForm},spaceId=${spaceId},DeleteNoneUserInSpaceForm=${DeleteNoneUserInSpaceForm},ShowForm=${ShowForm})"></th:brock>
+				 	th:insert="see/space::see_space(UpdateSpaceForm=${UpdateSpaceForm},spaceId=${spaceId},DeleteNoneUserInSpaceForm=${DeleteNoneUserInSpaceForm},ShowForm=${ShowForm},DeleteUserInSpaceForm=${DeleteUserInSpaceForm})"></th:brock>
 				 <th:brock
 					th:if="${WebSeeContentType}=='user_in_space'"
 				 	th:insert="see/user_in_space::user_in_space(UpdateUserInSpaceForm=${UpdateUserInSpaceForm})"></th:brock>
