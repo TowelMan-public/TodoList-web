@@ -19,14 +19,13 @@ import com.example.demo.security.UserDetailsImp;
 import com.example.demo.service.UserInSpaceService;
 
 @Controller
-@RequestMapping(SeeUserInSpaceControl.URL)
+@RequestMapping(UrlConfig.ROOT_URL)
 public class SeeUserInSpaceControl {
-	public static final String URL = UrlConfig.ROOT_URL + "/see/space/user";
 	
 	@Autowired
 	UserInSpaceService userInSpaceService;
 	
-	@GetMapping("/{spaceId}/{username}")
+	@GetMapping("/see/space/user/{spaceId}/{username}")
 	public String showPage(@AuthenticationPrincipal UserDetailsImp user,
 			@PathVariable("spaceId") Integer spaceId ,@PathVariable("username") String username, Model model) {
 		return new ModelSetter(model,ModelSetter.PAGE_SEE_USER_IN_SPACE)
@@ -37,20 +36,20 @@ public class SeeUserInSpaceControl {
 					.buildAndReturnUrl();
 	}
 	
-	@PostMapping
+	@PostMapping("/see/update/user")
 	public String updateUserInSpace(@AuthenticationPrincipal UserDetailsImp user,
 			@Validated UpdateUserInSpaceForm form, BindingResult result, RedirectAttributes redirect) {
 		//入力ﾁｪｯｸ
 		if(result.hasErrors()) {
-			redirect.addFlashAttribute("org.springframework.validation.BindingResult.InsertListForm", result);
-			redirect.addFlashAttribute("InsertListForm", form);
-			return "redirect:" + UrlConfig.ROOT_URL + "see/space/day";
+			redirect.addFlashAttribute("org.springframework.validation.BindingResult.UpdateUserInSpaceForm", result);
+			redirect.addFlashAttribute("UpdateUserInSpaceForm", form);
+			return "redirect:" + UrlConfig.ROOT_URL + "/see/space/user/" + form.getSpaceId() + "/" + form.getUsername();
 		}
 		
 		//処理
 		userInSpaceService.updateUserInSpace(user,form);
 		
 		//リダイレクト
-		return "redirect:" + URL + form.getSpaceId() + "/" + form.getUsername();
+		return "redirect:" + UrlConfig.ROOT_URL + "/see/space/user/" + form.getSpaceId() + "/" + form.getUsername();
 	}
 }

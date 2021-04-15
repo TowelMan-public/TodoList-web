@@ -50,5 +50,15 @@ public class DateUtility {
 			return false;
 		}
 	}
+
+	public String dateTypeToDateFormatString(Date date) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/M/d");
+		return format.format(date);
+	}
+
+	public String dateTypeToTimeFormatString(Date date) {
+		SimpleDateFormat format = new SimpleDateFormat("H:m");
+		return format.format(date);
+	}
 	
 }

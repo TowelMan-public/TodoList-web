@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.client.api.entity.ContentEntity;
+import com.example.demo.client.api.entity.ListEntity;
 import com.example.demo.client.api.entity.VoidEntity;
 import com.example.demo.client.rest.RestTemplateAdapter;
 import com.example.demo.security.UserDetailsImp;
@@ -29,8 +30,17 @@ public class ListApi {
 		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
 	}
 	
-	public List<ContentEntity> getContentsInList(UserDetailsImp user, int listId) {
+	public ListEntity getList(UserDetailsImp user, int listId) {
 		final String URL = ROOT_URL + "/get";
+		
+		Dto dto = new Dto();
+		dto.setListId(listId);
+		
+		return restTemplateAdapter.getForObjectWhenLogined(URL, dto, ListEntity.class, user);
+	}
+	
+	public List<ContentEntity> getContentsInList(UserDetailsImp user, int listId) {
+		final String URL = ROOT_URL + "/get/content";
 		
 		Dto dto = new Dto();
 		dto.setListId(listId);
