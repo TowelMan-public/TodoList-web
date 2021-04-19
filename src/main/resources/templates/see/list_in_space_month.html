@@ -12,10 +12,10 @@
 		<tr th:each="form : ${ShowForm}" th:object="${form}">
 			<td>
 				<table th:each="i : ${#numbers.sequence(0, 6)}">
-					<tr><th th:text="${form.get(i).getDate} + '日'"
-							th:href="@{/web/space/{spaceId}/day/{assignmentDate}(spaceId=${spaceId},assignmentDate=${form.get(i).getAssignmentDate})}"></th><tr>
-					<tr><td th:text="${form.get(i).getListCount} + '件'"
-							th:href="@{/web/space/{spaceId}/day/{assignmentDate}(spaceId=${spaceId},assignmentDate=${form.get(i).getAssignmentDate})}"></td></tr>
+					<tr><th th:text="${form.get(i).getDate()} + '日'"
+							th:href="@{/web/space/{spaceId}/day/{assignmentDate}(spaceId=${spaceId},assignmentDate=${form.get(i).getAssignmentDate()})}"></th><tr>
+					<tr><td th:text="${form.get(i).getListCount()} + '件'"
+							th:href="@{/web/space/{spaceId}/day/{assignmentDate}(spaceId=${spaceId},assignmentDate=${form.get(i).getAssignmentDate()})}"></td></tr>
 				</table>
 			</td>
 		</tr>
