@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 
 import com.example.demo.form.delete.*;
 import com.example.demo.form.see.*;
+import com.example.demo.form.see.ListInSpace.HeaderSpaceForm;
 import com.example.demo.form.update.*;
 import com.example.demo.form.insert.*;
 
@@ -27,7 +28,6 @@ public class ModelSetter {
 	public static final WebSeeContentType PAGE_SEE_CONTENT = new WebSeeContentType ("see_content",WebSeeContentType.EXAMPLE_URL);
 	public static final WebSeeContentType PAGE_SEE_SPACE = new WebSeeContentType ("see_space",WebSeeContentType.EXAMPLE_URL);
 	public static final WebSeeContentType PAGE_SEE_USER_IN_SPACE = new WebSeeContentType ("user_in_space",WebSeeContentType.EXAMPLE_URL);
-	public static final WebSeeContentType PAGE_SEE_SIMPLE_LIST = new WebSeeContentType ("simple_list",WebSeeContentType.EXAMPLE_URL);
 	public static final WebSeeContentType PAGE_INSERT_CONTENT = new WebSeeContentType ("insert_content",WebSeeContentType.EXAMPLE_URL);
 	public static final WebSeeContentType PAGE_INSERT_SPACE = new WebSeeContentType ("insert_space",WebSeeContentType.EXAMPLE_URL);
 	public static final WebSeeContentType PAGE_INSERT_LIST = new WebSeeContentType ("insert_list",WebSeeContentType.EXAMPLE_URL);
@@ -108,11 +108,6 @@ public class ModelSetter {
 	
 	public ModelSetter setUpdateUserInSpaceForm(UpdateUserInSpaceForm updateUserInSpaceForm){
 		model.addAttribute("UpdateUserInSpaceForm", updateUserInSpaceForm);
-		return this;
-	}
-	
-	public ModelSetter setUpdateSimpleListForm(UpdateSimpleListForm updateSimpleListForm){
-		model.addAttribute("UpdateSimpleListForm", updateSimpleListForm);
 		return this;
 	}
 	

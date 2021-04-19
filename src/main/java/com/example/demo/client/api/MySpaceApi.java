@@ -21,7 +21,7 @@ public class MySpaceApi {
 	@Autowired
 	RestTemplateAdapter restTemplateAdapter;
 	
-	public CountlistInSpaceEntity getCountListInDay(UserDetailsImp user, int spaceId, int year, int month, int day) {
+	public CountlistInSpaceEntity getCountListInDay(UserDetailsImp user, int year, int month, int day) {
 		final String URL = ROOT_URL + "/count/day/get";
 		
 		Dto dto = new Dto();
@@ -32,7 +32,7 @@ public class MySpaceApi {
 		return restTemplateAdapter.getForObjectWhenLogined(URL, dto, CountlistInSpaceEntity.class, user);
 	}
 	
-	public CountlistInSpaceEntity getCountListInMonth(UserDetailsImp user, int spaceId, int year, int month) {
+	public CountlistInSpaceEntity getCountListInMonth(UserDetailsImp user, int year, int month) {
 		final String URL = ROOT_URL + "/count/month/get";
 		
 		Dto dto = new Dto();
@@ -42,7 +42,7 @@ public class MySpaceApi {
 		return restTemplateAdapter.getForObjectWhenLogined(URL, dto, CountlistInSpaceEntity.class, user);
 	}
 	
-	public CountlistInSpaceEntity getCountListInWeek(UserDetailsImp user, int spaceId, int year, int month, int weekCount) {
+	public CountlistInSpaceEntity getCountListInWeek(UserDetailsImp user, int year, int month, int weekCount) {
 		final String URL = ROOT_URL + "/count/week/get";
 		
 		Dto dto = new Dto();
@@ -53,7 +53,7 @@ public class MySpaceApi {
 		return restTemplateAdapter.getForObjectWhenLogined(URL, dto, CountlistInSpaceEntity.class, user);
 	}
 	
-	public List<TodoListEachUserEntity> getListInDayInSpace(UserDetailsImp user, int spaceId, int year, int month, int day) {
+	public List<TodoListEachUserEntity> getListInDayInSpace(UserDetailsImp user, int year, int month, int day) {
 		final String URL = ROOT_URL + "/day/get";
 		
 		Dto dto = new Dto();

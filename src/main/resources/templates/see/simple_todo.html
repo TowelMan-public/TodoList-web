@@ -7,8 +7,8 @@
 					th:each="simple : ${SimpleForm}" th:object="${simple}">
 					
 					<div class="simple_todo_lists"
-						th:href="@{/web/see/simple_list/simple.listId}" 
-						th:text="*{simple.listName}">
+						th:href="@{/web/see/list/{listId}(listId=*{listId})}" 
+						th:text="*{listName}">
 					</div>
 				</div>
 			</div>
