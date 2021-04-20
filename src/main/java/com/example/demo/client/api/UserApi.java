@@ -47,12 +47,12 @@ public class UserApi {
 		return restTemplateAdapter.getForObjectWhenLogined(URL, new VoidEntity(), UserEntity.class, user);
 	}
 	
-	public void insertUser(UserDetailsImp user, InsertDtobBuilder builder) {
+	public void insertUser(InsertDtobBuilder builder) {
 		final String URL = ROOT_URL + "/insert";
 		
 		Dto dto = builder.build();
 		
-		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
+		restTemplateAdapter.postForObject(URL, dto, VoidEntity.class);
 	}
 	
 	public void updatePassword(UserDetailsImp user,String newPassword, String oneMorePassword) {

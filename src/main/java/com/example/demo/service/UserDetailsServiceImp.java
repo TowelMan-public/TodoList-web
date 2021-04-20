@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.client.api.UserApi;
 import com.example.demo.client.api.entity.UserEntity;
+import com.example.demo.form.insert.SignupForm;
 import com.example.demo.form.update.UpdatePassword;
 import com.example.demo.form.update.UpdateUsername;
 import com.example.demo.security.UserDetailsImp;
@@ -47,6 +48,13 @@ public class UserDetailsServiceImp{
 
 	public void withdrawal(UserDetailsImp user) {
 		userApi.deleteUser(user);
+	}
+
+	public void insertUser(SignupForm form) {
+		userApi.insertUser(userApi. new InsertDtobBuilder()
+								  .setUsername(form.getUsername())
+								  .setPassword(form.getPassword())
+								  .setOneMorePassword(form.getOneMorePassword()));
 	}
 	
 }

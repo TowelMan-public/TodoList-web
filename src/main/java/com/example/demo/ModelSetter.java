@@ -56,6 +56,11 @@ public class ModelSetter {
 		return this;
 	}
 	
+	public ModelSetter setSignupForm(SignupForm form) {
+		model.addAttribute("SignupForm", form);
+		return this;
+	}
+	
 	public ModelSetter setSimpleForm(List<SimpleForm> simpleForm){
 		model.addAttribute("SimpleForm", simpleForm);
 		return this;

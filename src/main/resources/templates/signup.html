@@ -11,7 +11,7 @@
 	<body>
 		<h1>ToDoリスト♪</h1>
 		<h2>ユーザーの新規作成</h2>
-		<form th:action="@{/web/signup}" method="post" action="#" th:object="${signup}">
+		<form th:action="@{/web/signup}" method="post" action="#" th:object="${SignupForm}">
 			<div>ユーザー名：<input type="text" name="username" th:field="*{username}"/></div> <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" /><br>
 			<div th:if="${#fields.hasErrors('notMatchesPassword')}" th:field="*{notMatchesPassword}" th:errors="*{notMatchesPassword}"></div>
 			<div>パスワード：<input type="password" name="password" th:field="*{password}"/></div> <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" /><br>
