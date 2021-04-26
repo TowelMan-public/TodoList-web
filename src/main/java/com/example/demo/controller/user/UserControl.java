@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.ModelSetter;
 import com.example.demo.UrlConfig;
+import com.example.demo.client.exception.AlreadyUsedException;
 import com.example.demo.form.insert.SignupForm;
 import com.example.demo.service.UserDetailsServiceImp;
 
@@ -48,7 +50,16 @@ public class UserControl {
 		}
 		
 		//処理
-		userDetailsService.insertUser(form);
+		try {
+			userDetailsService.insertUser(form);
+		}
+		catch(AlreadyUsedException e) {
+			FieldError error = new FieldError(result.getObjectName(), "username", "既に使用されているユーザー名です");
+			result.addError(error);
+			redirect.addFlashAttribute("org.springframework.validation.BindingResult.SignupForm", result);
+			redirect.addFlashAttribute("SignupForm", form);
+			return "redirect:" + UrlConfig.ROOT_URL + "/signup";
+		}
 		
 		//リダイレクト
 		return "redirect:" + UrlConfig.ROOT_URL + "/login";

@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.client.api.ApiUrlRootConfing;
@@ -19,12 +21,14 @@ import com.example.demo.security.UserDetailsImp;
 @Component
 public class RestTemplateAdapter {
 	
+	@Autowired
+	RestTemplateExceptionHandler restTemplateExceptionHandler;
+	
 	private final RestTemplate restTemplate;
 	
 	//RestTemplateの設定
 	public RestTemplateAdapter() {
 		restTemplate = new RestTemplateBuilder()
-							.errorHandler(new RestTemplateResponseErrorHandler())
 							.build();
 	}
 	
@@ -38,7 +42,15 @@ public class RestTemplateAdapter {
 		          .body(requestBody);
 		
 		//実行
-		ResponseEntity<T> responseEntity = restTemplate.exchange(requestEntity, responseBodyClass);
+		ResponseEntity<T> responseEntity = null;
+		try {
+			responseEntity = restTemplate.exchange(requestEntity, responseBodyClass);
+		}
+		catch(RestClientResponseException e) {
+			restTemplateExceptionHandler.handlError(e);
+		}
+		
+		//返却
 		user.setTokenForServer(
 				responseEntity
 					.getHeaders()
@@ -71,7 +83,15 @@ public class RestTemplateAdapter {
 		          .build();
 		
 		//実行
-		ResponseEntity<T> responseEntity = restTemplate.exchange(requestEntity, responseBodyClass);
+		ResponseEntity<T> responseEntity = null;
+		try {
+			responseEntity = restTemplate.exchange(requestEntity, responseBodyClass);
+		}
+		catch(RestClientResponseException e) {
+			restTemplateExceptionHandler.handlError(e);
+		}
+		
+		//返却
 		user.setTokenForServer(
 				responseEntity
 					.getHeaders()
@@ -104,7 +124,15 @@ public class RestTemplateAdapter {
 		          .build();
 		
 		//実行
-		ResponseEntity<List<T>> responseEntity = restTemplate.exchange(requestEntity, new ParameterizedTypeReference<List<T>>() {});
+		ResponseEntity<List<T>> responseEntity = null;
+		try {
+			responseEntity = restTemplate.exchange(requestEntity, new ParameterizedTypeReference<List<T>>() {});
+		}
+		catch(RestClientResponseException e) {
+			restTemplateExceptionHandler.handlError(e);
+		}
+		
+		//返却
 		user.setTokenForServer(
 				responseEntity
 					.getHeaders()
@@ -121,7 +149,14 @@ public class RestTemplateAdapter {
 		          .body(requestBody);
 		
 		//実行
-		return restTemplate.exchange(requestEntity, responseBodyClass);
+		try {
+			return restTemplate.exchange(requestEntity, responseBodyClass);
+		}
+		catch(RestClientResponseException e) {
+			restTemplateExceptionHandler.handlError(e);
+		}
+		
+		return null;
 	}
 	
 	public <R,T>  ResponseEntity<T> gettForObject(String url, R requestBody, Class<T> responseBodyClass) {
@@ -148,6 +183,13 @@ public class RestTemplateAdapter {
 		          .build();
 		
 		//実行
-		return restTemplate.exchange(requestEntity, responseBodyClass);
+		try {
+			return restTemplate.exchange(requestEntity, responseBodyClass);
+		}
+		catch(RestClientResponseException e) {
+			restTemplateExceptionHandler.handlError(e);
+		}
+		
+		return null;
 	}
 }

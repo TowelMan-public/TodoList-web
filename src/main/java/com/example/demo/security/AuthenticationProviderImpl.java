@@ -2,11 +2,13 @@ package com.example.demo.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.example.demo.client.exception.LoginFailureException;
 import com.example.demo.service.UserDetailsServiceImp;
 
 public class AuthenticationProviderImpl extends AbstractUserDetailsAuthenticationProvider {
@@ -32,11 +34,14 @@ public class AuthenticationProviderImpl extends AbstractUserDetailsAuthenticatio
         
         //認証及び認証情報の作成
         UserDetailsImp user = new UserDetailsImp();
-        user.setTokenForServer(
-        		userDetailsServiceImp.loginAndReturnToken(username, password));
-        user.setUsername(username);
-        user.setPassword(DUMMY_PASSWORD);
-        
+        try {
+	        user.setTokenForServer(
+	        		userDetailsServiceImp.loginAndReturnToken(username, password));
+	        user.setUsername(username);
+	        user.setPassword(DUMMY_PASSWORD);
+        }catch(LoginFailureException e){
+        	throw new BadCredentialsException(e.getMessage());
+        }
         //認証情報を返す
         return user;
 	}	
