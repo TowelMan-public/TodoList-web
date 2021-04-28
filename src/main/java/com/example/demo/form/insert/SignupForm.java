@@ -17,7 +17,7 @@ public class SignupForm {
 	private String oneMorePassword;
 	
 	@AssertTrue(message = "2つのパスワードが合致しません。もう一度お確かめください")
-	public boolean notMatchesPassword() {
+	public boolean isNotMatchesPassword() {
 		return (password == null || oneMorePassword == null) || (password.equals(oneMorePassword));
 	}
 }

@@ -48,71 +48,71 @@ public class ModelSetter {
 	}
 	
 	public String buildAndReturnUrl() {
-		return UrlConfig.ROOT_URL + url;
+		return url;
 	}
 	
 	public ModelSetter setShowForm(List<?> showForm){
-		model.addAttribute("ShowForm", showForm);
+		setOther("ShowForm", showForm);
 		return this;
 	}
 	
 	public ModelSetter setSignupForm(SignupForm form) {
-		model.addAttribute("SignupForm", form);
+		setOther("SignupForm", form);
 		return this;
 	}
 	
 	public ModelSetter setSimpleForm(List<SimpleForm> simpleForm){
-		model.addAttribute("SimpleForm", simpleForm);
+		setOther("SimpleForm", simpleForm);
 		return this;
 	}
 	
 	public ModelSetter setSpaceId(int spaceId){
-		model.addAttribute("spaceId", spaceId);
+		setOther("spaceId", spaceId);
 		return this;
 	}
 	
 	public ModelSetter setHeaderSpaceForm(HeaderSpaceForm headerSpaceForm){
-		model.addAttribute("HeaderSpaceForm", headerSpaceForm);
+		setOther("HeaderSpaceForm", headerSpaceForm);
 		return this;
 	}
 	
 	public ModelSetter setDeleteNoneUserInSpaceForm(DeleteNoneUserInSpaceForm deleteNoneUserInSpaceForm){
-		model.addAttribute("DeleteNoneUserInSpaceForm", deleteNoneUserInSpaceForm);
+		setOther("DeleteNoneUserInSpaceForm", deleteNoneUserInSpaceForm);
 		return this;
 	}
 	
 	public ModelSetter setUpdateListForm(UpdateListForm updateListForm){
-		model.addAttribute("UpdateListForm", updateListForm);
+		setOther("UpdateListForm", updateListForm);
 		return this;
 	}
 	
 	public ModelSetter setListId(int listId){
-		model.addAttribute("listId", listId);
+		setOther("listId", listId);
 		return this;
 	}
 	
 	public ModelSetter setContentId(int contentId){
-		model.addAttribute("contentId", contentId);
+		setOther("contentId", contentId);
 		return this;
 	}
 	
 	public ModelSetter setUpdateContentForm(UpdateContentForm updateContentForm){
-		model.addAttribute("UpdateContentForm", updateContentForm);
+		setOther("UpdateContentForm", updateContentForm);
 		return this;
 	}
 	
 	public ModelSetter setDeleteUserInSpaceForm(DeleteUserInSpaceForm deleteUserInSpaceForm){
-		model.addAttribute("DeleteUserInSpaceForm", deleteUserInSpaceForm);
+		setOther("DeleteUserInSpaceForm", deleteUserInSpaceForm);
 		return this;
 	}
 	
 	public ModelSetter setUpdateSpaceForm(UpdateSpaceForm updateSpaceForm){
-		model.addAttribute("UpdateSpaceForm", updateSpaceForm);
+		setOther("UpdateSpaceForm", updateSpaceForm);
 		return this;
 	}
 	
 	public ModelSetter setUpdateUserInSpaceForm(UpdateUserInSpaceForm updateUserInSpaceForm){
-		model.addAttribute("UpdateUserInSpaceForm", updateUserInSpaceForm);
+		setOther("UpdateUserInSpaceForm", updateUserInSpaceForm);
 		return this;
 	}
 	
@@ -161,7 +161,7 @@ public class ModelSetter {
 	@AllArgsConstructor
 	private static class WebSeeContentType{
 		public static final String EXAMPLE_URL = "/example";
-		private String pageUrl;
 		private String webSeeContentTypeName;
+		private String pageUrl;
 	}
 }

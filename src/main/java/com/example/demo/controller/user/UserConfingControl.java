@@ -66,7 +66,7 @@ public class UserConfingControl {
 		return "redirect:" + URL;
 	}
 	
-	@PostMapping("/update/username")
+	@PostMapping("/update/password")
 	public String updatePassword(@AuthenticationPrincipal UserDetailsImp user,
 			@Validated UpdatePassword form, BindingResult result, RedirectAttributes redirect) {
 		//入力ﾁｪｯｸ

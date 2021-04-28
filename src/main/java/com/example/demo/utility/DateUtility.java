@@ -3,6 +3,9 @@ package com.example.demo.utility;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class DateUtility {
 
 	public Date dateFormatStringToDate(String date) {

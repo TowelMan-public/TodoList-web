@@ -18,6 +18,9 @@ public class SeeSimpleTodoControllerAdvice {
 	
 	@ModelAttribute("SimpleForm")
 	public List<SimpleTodoListEntity> addSimpleForm(@AuthenticationPrincipal UserDetailsImp user) {
-		return simpleTodoService.getSimpleTodoList(user);
+		if(user != null)
+			return simpleTodoService.getSimpleTodoList(user);
+		else
+			return null;
 	}
 }

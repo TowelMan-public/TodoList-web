@@ -27,6 +27,10 @@ public class UserControl {
 	public String showLoginPage(Model model) {
 		return new ModelSetter(model,ModelSetter.PAGE_LOGIN)
 				
+				.setOther("username", "")
+				
+				.setOther("password", "")
+				
 				.buildAndReturnUrl();
 	}
 	

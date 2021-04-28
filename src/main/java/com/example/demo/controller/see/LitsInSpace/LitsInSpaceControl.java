@@ -17,7 +17,7 @@ import com.example.demo.security.UserDetailsImp;
 import com.example.demo.service.ListInSpace.LitsInSpaceService;
 
 @Controller
-@RequestMapping(UrlConfig.ROOT_URL)
+@RequestMapping(LitsInSpaceControl.URL)
 public class LitsInSpaceControl {
 	@Autowired
 	LitsInSpaceService litsInSpaceService;

@@ -1,13 +1,17 @@
 package com.example.demo.security;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import com.example.demo.UrlConfig;
 
+@Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String LOGIN_PAGE = UrlConfig.ROOT_URL + "/login";
 	
@@ -16,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 //ログイン不要でアクセス可能に設定
-                .antMatchers(LOGIN_PAGE,UrlConfig.ROOT_URL + "/sinin").permitAll()
+                .antMatchers(LOGIN_PAGE,UrlConfig.ROOT_URL + "/signup").permitAll()
                 //上記以外は直リンク禁止
                 .anyRequest().authenticated()
             .and()
