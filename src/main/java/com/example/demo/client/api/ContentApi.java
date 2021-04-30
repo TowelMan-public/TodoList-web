@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Component
 public class ContentApi {
-	private static final String ROOT_URL = "/content";
+	private static final String ROOT_URL = ApiUrlRootConfing.ROOT_URL + "/content";
 	
 	@Autowired
 	RestTemplateAdapter restTemplateAdapter;

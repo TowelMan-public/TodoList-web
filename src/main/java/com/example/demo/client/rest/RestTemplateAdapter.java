@@ -5,14 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.beanutils.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.client.api.ApiUrlRootConfing;
@@ -21,14 +19,16 @@ import com.example.demo.security.UserDetailsImp;
 @Component
 public class RestTemplateAdapter {
 	
-	@Autowired
 	RestTemplateExceptionHandler restTemplateExceptionHandler;
 	
 	private final RestTemplate restTemplate;
 	
 	//RestTemplateの設定
 	public RestTemplateAdapter() {
+		restTemplateExceptionHandler = new RestTemplateExceptionHandler();
+		
 		restTemplate = new RestTemplateBuilder()
+							.errorHandler(restTemplateExceptionHandler)
 							.build();
 	}
 	
@@ -36,21 +36,13 @@ public class RestTemplateAdapter {
 		//リクエスト作成
 		RequestEntity<R> requestEntity = 
 		        RequestEntity
-		          .post(ApiUrlRootConfing.ROOT_URL + url)
+		          .post(url)
 		          .contentType(MediaType.APPLICATION_JSON)
 		          .header("X-AUTH-TOKEN",user.getTokenForServer())
 		          .body(requestBody);
 		
 		//実行
-		ResponseEntity<T> responseEntity = null;
-		try {
-			responseEntity = restTemplate.exchange(requestEntity, responseBodyClass);
-		}
-		catch(RestClientResponseException e) {
-			restTemplateExceptionHandler.handlError(e);
-		}
-		
-		//返却
+		ResponseEntity<T> responseEntity = restTemplate.exchange(requestEntity, responseBodyClass);
 		user.setTokenForServer(
 				responseEntity
 					.getHeaders()
@@ -72,26 +64,20 @@ public class RestTemplateAdapter {
 		for(Map.Entry<String, ?> entry : requestBodyMap.entrySet()) {
 			bld.append(entry.getKey() + "=" + entry.getValue().toString() + "&");
 		}
-		bld.setLength(bld.length()-1);
+		
+		if(requestBodyMap.size() != 0)
+			bld.setLength(bld.length()-1);
 		url = bld.toString();
 		
 		//リクエスト作成
 		RequestEntity<Void> requestEntity = 
 		        RequestEntity
-		          .get(ApiUrlRootConfing.ROOT_URL + url)
+		          .get(url)
 		          .header("X-AUTH-TOKEN",user.getTokenForServer())
 		          .build();
 		
 		//実行
-		ResponseEntity<T> responseEntity = null;
-		try {
-			responseEntity = restTemplate.exchange(requestEntity, responseBodyClass);
-		}
-		catch(RestClientResponseException e) {
-			restTemplateExceptionHandler.handlError(e);
-		}
-		
-		//返却
+		ResponseEntity<T> responseEntity = restTemplate.exchange(requestEntity, responseBodyClass);
 		user.setTokenForServer(
 				responseEntity
 					.getHeaders()
@@ -113,26 +99,20 @@ public class RestTemplateAdapter {
 		for(Map.Entry<String, ?> entry : requestBodyMap.entrySet()) {
 			bld.append(entry.getKey() + "=" + entry.getValue().toString() + "&");
 		}
-		bld.setLength(bld.length()-1);
+		
+		if(requestBodyMap.size() != 0)
+			bld.setLength(bld.length()-1);
 		url = bld.toString();
 		
 		//リクエスト作成
 		RequestEntity<Void> requestEntity = 
 		        RequestEntity
-		          .get(ApiUrlRootConfing.ROOT_URL + url)
+		          .get(url)
 		          .header("X-AUTH-TOKEN",user.getTokenForServer())
 		          .build();
 		
 		//実行
-		ResponseEntity<List<T>> responseEntity = null;
-		try {
-			responseEntity = restTemplate.exchange(requestEntity, new ParameterizedTypeReference<List<T>>() {});
-		}
-		catch(RestClientResponseException e) {
-			restTemplateExceptionHandler.handlError(e);
-		}
-		
-		//返却
+		ResponseEntity<List<T>> responseEntity = restTemplate.exchange(requestEntity, new ParameterizedTypeReference<List<T>>() {});
 		user.setTokenForServer(
 				responseEntity
 					.getHeaders()
@@ -144,19 +124,12 @@ public class RestTemplateAdapter {
 		//リクエスト作成
 		RequestEntity<R> requestEntity = 
 		        RequestEntity
-		          .post(ApiUrlRootConfing.ROOT_URL + url)
-		          .contentType(MediaType.MULTIPART_FORM_DATA)
+		          .post(url)
+		          //.contentType(MediaType.MULTIPART_FORM_DATA)
 		          .body(requestBody);
 		
 		//実行
-		try {
-			return restTemplate.exchange(requestEntity, responseBodyClass);
-		}
-		catch(RestClientResponseException e) {
-			restTemplateExceptionHandler.handlError(e);
-		}
-		
-		return null;
+		return restTemplate.exchange(requestEntity, responseBodyClass);
 	}
 	
 	public <R,T>  ResponseEntity<T> gettForObject(String url, R requestBody, Class<T> responseBodyClass) {
@@ -173,23 +146,18 @@ public class RestTemplateAdapter {
 		for(Map.Entry<String, ?> entry : requestBodyMap.entrySet()) {
 			bld.append(entry.getKey() + "=" + entry.getValue().toString() + "&");
 		}
-		bld.setLength(bld.length()-1);
+		
+		if(requestBodyMap.size() != 0)
+			bld.setLength(bld.length()-1);
 		url = bld.toString();
 		
 		//リクエスト作成
 		RequestEntity<Void> requestEntity = 
 		        RequestEntity
-		          .get(ApiUrlRootConfing.ROOT_URL + url)
+		          .get(url)
 		          .build();
 		
 		//実行
-		try {
-			return restTemplate.exchange(requestEntity, responseBodyClass);
-		}
-		catch(RestClientResponseException e) {
-			restTemplateExceptionHandler.handlError(e);
-		}
-		
-		return null;
+		return restTemplate.exchange(requestEntity, responseBodyClass);
 	}
 }

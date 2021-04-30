@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Component
 public class SpaceApi {
-	private static final String ROOT_URL = "/space";
+	private static final String ROOT_URL = ApiUrlRootConfing.ROOT_URL + "/space";
 	
 	@Autowired
 	RestTemplateAdapter restTemplateAdapter;

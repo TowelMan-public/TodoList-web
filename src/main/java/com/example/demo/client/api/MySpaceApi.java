@@ -16,7 +16,7 @@ import lombok.Data;
 
 @Component
 public class MySpaceApi {
-	private static final String ROOT_URL = "/space/me";
+	private static final String ROOT_URL = ApiUrlRootConfing.ROOT_URL + "/space/me";
 	
 	@Autowired
 	RestTemplateAdapter restTemplateAdapter;

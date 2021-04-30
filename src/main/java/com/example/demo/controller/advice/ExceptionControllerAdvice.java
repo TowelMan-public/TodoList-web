@@ -5,7 +5,7 @@ import java.text.ParseException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.ResourceAccessException;
-import org.springframework.web.client.RestClientResponseException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.UrlConfig;
@@ -75,7 +75,7 @@ public class ExceptionControllerAdvice {
 		return modelAndView;
 	}
 	
-	//ログイン状態なし　再ログイン求む TODO
+	//ログイン状態なし　再ログイン求む
 	@ExceptionHandler({InvalidLoginException.class})
 	public ModelAndView handleInvalidLoginException(InvalidLoginException e) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -89,8 +89,8 @@ public class ExceptionControllerAdvice {
 	}
 	
 	//予期できないAPI呼び出しエラー
-	@ExceptionHandler({RestClientResponseException.class})
-	public ModelAndView handleRestClientResponseException(RestClientResponseException  e) {
+	@ExceptionHandler({RestClientException.class})
+	public ModelAndView handleRestClientResponseException(RestClientException  e) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		//セットして返却

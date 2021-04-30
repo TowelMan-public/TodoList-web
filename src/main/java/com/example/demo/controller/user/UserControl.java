@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.ModelSetter;
 import com.example.demo.UrlConfig;
+import com.example.demo.client.api.UserApi;
 import com.example.demo.client.exception.AlreadyUsedException;
 import com.example.demo.form.insert.SignupForm;
 import com.example.demo.service.UserDetailsServiceImp;
@@ -22,6 +23,9 @@ import com.example.demo.service.UserDetailsServiceImp;
 public class UserControl {	
 	@Autowired
 	UserDetailsServiceImp userDetailsService;
+	
+	@Autowired
+	UserApi api;
 	
 	@GetMapping("/login")
 	public String showLoginPage(Model model) {

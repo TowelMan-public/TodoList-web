@@ -16,7 +16,7 @@ import lombok.Data;
 
 @Component
 public class ListApi {
-	private static final String ROOT_URL = "/list";
+	private static final String ROOT_URL = ApiUrlRootConfing.ROOT_URL + "/list";
 	
 	@Autowired
 	RestTemplateAdapter restTemplateAdapter;
