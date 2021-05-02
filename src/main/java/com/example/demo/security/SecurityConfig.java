@@ -1,8 +1,8 @@
 package com.example.demo.security;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,6 +14,9 @@ import com.example.demo.UrlConfig;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String LOGIN_PAGE = UrlConfig.ROOT_URL + "/login";
+	
+	@Autowired
+	AuthenticationProviderImpl authenticationProviderImpl;
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -50,9 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/style.css");
     }
 	
-	@Bean
-	public AuthenticationProvider getAuthenticationProvider() {
-		// 自前のAuthenticationProviderを使用する
-		return new AuthenticationProviderImpl();
-	}
+	@Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProviderImpl);
+    }
 }

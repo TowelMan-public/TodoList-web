@@ -18,19 +18,18 @@ public class UserApi {
 	RestTemplateAdapter restTemplateAdapter;
 	
 	public String login(String username,String password) {
-		final String URL = "/login";
+		final String URL = ApiUrlRootConfing.ROOT_URL + "/login";
 		
 		LoginForm form = new LoginForm();
 		form.setUsername(username);
 		form.setPassword(password);
 		
-		return restTemplateAdapter.postForObject(URL, form, VoidEntity.class)
-				.getHeaders()
-				.getFirst("X-AUTH-TOKEN");
+		return restTemplateAdapter.postForObject(URL, form, String.class)
+				.getBody();
 	}
 	
 	public void logout(UserDetailsImp user) {
-		final String URL = ROOT_URL + "/logout";
+		final String URL = ApiUrlRootConfing.ROOT_URL + "/logout";
 		
 		restTemplateAdapter.postForObjectWhenLogined(URL, new VoidEntity(), VoidEntity.class, user);
 	}

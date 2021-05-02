@@ -13,8 +13,8 @@
 		<h2>ログイン</h2>
 		<div th:if="${loginError}" th:text="${error}" ></div>
 		<form th:action="@{/web/login}" method="post" action="#"> 
-			<div class="input_label">ユーザー名：<input type="text" name="username" th:field="*{username}"/></div><br>
-			<div class="input_label">パスワード：<input type="password" name="password" th:field="*{password}"/></div><br>
+			<div class="input_label">ユーザー名：<input type="text" name="username" /></div><br>
+			<div class="input_label">パスワード：<input type="password" name="password"/></div><br>
 			<p><input type="submit" value="ログイン" class="button"/></p>
 		</form>
 		<a th:href="@{/web/signup}">ユーザーを作る</a>

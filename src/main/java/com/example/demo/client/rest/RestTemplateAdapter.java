@@ -7,13 +7,11 @@ import java.util.Map;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.demo.client.api.ApiUrlRootConfing;
 import com.example.demo.security.UserDetailsImp;
 
 @Component
@@ -37,7 +35,7 @@ public class RestTemplateAdapter {
 		RequestEntity<R> requestEntity = 
 		        RequestEntity
 		          .post(url)
-		          .contentType(MediaType.APPLICATION_JSON)
+		          //.contentType(MediaType.APPLICATION_JSON)
 		          .header("X-AUTH-TOKEN",user.getTokenForServer())
 		          .body(requestBody);
 		
