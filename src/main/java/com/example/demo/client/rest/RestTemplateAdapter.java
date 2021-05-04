@@ -41,10 +41,6 @@ public class RestTemplateAdapter {
 		
 		//実行
 		ResponseEntity<T> responseEntity = restTemplate.exchange(requestEntity, responseBodyClass);
-		user.setTokenForServer(
-				responseEntity
-					.getHeaders()
-					.getFirst("X-AUTH-TOKEN"));
 		return responseEntity.getBody();
 	}
 	
@@ -58,14 +54,16 @@ public class RestTemplateAdapter {
 		}
 		
 		//URLの作成
-		StringBuilder bld = new StringBuilder(url);
+		StringBuilder bld = new StringBuilder("");
 		for(Map.Entry<String, ?> entry : requestBodyMap.entrySet()) {
-			bld.append(entry.getKey() + "=" + entry.getValue().toString() + "&");
+			if(entry.getValue() != null)
+				bld.append(entry.getKey() + "=" + entry.getValue().toString() + "&");
 		}
 		
-		if(requestBodyMap.size() != 0)
+		if(requestBodyMap.size() != 0) {
 			bld.setLength(bld.length()-1);
-		url = bld.toString();
+			url += "?" + bld.toString();
+		}
 		
 		//リクエスト作成
 		RequestEntity<Void> requestEntity = 
@@ -76,10 +74,6 @@ public class RestTemplateAdapter {
 		
 		//実行
 		ResponseEntity<T> responseEntity = restTemplate.exchange(requestEntity, responseBodyClass);
-		user.setTokenForServer(
-				responseEntity
-					.getHeaders()
-					.getFirst("X-AUTH-TOKEN"));
 		return responseEntity.getBody();
 	}
 	
@@ -93,14 +87,16 @@ public class RestTemplateAdapter {
 		}
 		
 		//URLの作成
-		StringBuilder bld = new StringBuilder(url);
+		StringBuilder bld = new StringBuilder("");
 		for(Map.Entry<String, ?> entry : requestBodyMap.entrySet()) {
-			bld.append(entry.getKey() + "=" + entry.getValue().toString() + "&");
+			if(entry.getValue() != null)
+				bld.append(entry.getKey() + "=" + entry.getValue().toString() + "&");
 		}
 		
-		if(requestBodyMap.size() != 0)
+		if(requestBodyMap.size() != 0) {
 			bld.setLength(bld.length()-1);
-		url = bld.toString();
+			url += "?" + bld.toString();
+		}
 		
 		//リクエスト作成
 		RequestEntity<Void> requestEntity = 
@@ -111,10 +107,6 @@ public class RestTemplateAdapter {
 		
 		//実行
 		ResponseEntity<List<T>> responseEntity = restTemplate.exchange(requestEntity, new ParameterizedTypeReference<List<T>>() {});
-		user.setTokenForServer(
-				responseEntity
-					.getHeaders()
-					.getFirst("X-AUTH-TOKEN"));
 		return responseEntity.getBody();
 	}
 	
@@ -140,14 +132,16 @@ public class RestTemplateAdapter {
 		}
 		
 		//URLの作成
-		StringBuilder bld = new StringBuilder(url);
+		StringBuilder bld = new StringBuilder("");
 		for(Map.Entry<String, ?> entry : requestBodyMap.entrySet()) {
-			bld.append(entry.getKey() + "=" + entry.getValue().toString() + "&");
+			if(entry.getValue() != null)
+				bld.append(entry.getKey() + "=" + entry.getValue().toString() + "&");
 		}
 		
-		if(requestBodyMap.size() != 0)
+		if(requestBodyMap.size() != 0) {
 			bld.setLength(bld.length()-1);
-		url = bld.toString();
+			url += "?" + bld.toString();
+		}
 		
 		//リクエスト作成
 		RequestEntity<Void> requestEntity = 

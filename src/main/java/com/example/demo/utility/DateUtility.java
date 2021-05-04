@@ -55,10 +55,14 @@ public class DateUtility {
 	}
 
 	public String dateTypeToDateFormatString(Date date) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy/M/d");
-		return format.format(date);
+		return dateTypeToDateFormatString(date,'/');
 	}
 
+	public String dateTypeToDateFormatString(Date date, char delimiter) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy" + delimiter + "M" + delimiter + "d");
+		return format.format(date);
+	}
+	
 	public String dateTypeToTimeFormatString(Date date) {
 		SimpleDateFormat format = new SimpleDateFormat("H:m");
 		return format.format(date);

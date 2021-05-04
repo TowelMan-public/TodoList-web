@@ -27,7 +27,7 @@ public class UserControl {
 	@Autowired
 	UserApi api;
 	
-	@GetMapping("/login")
+	@GetMapping("login")
 	public String showLoginPage(Model model) {
 		return new ModelSetter(model,ModelSetter.PAGE_LOGIN)
 				
@@ -38,7 +38,7 @@ public class UserControl {
 				.buildAndReturnUrl();
 	}
 	
-	@GetMapping("/signup")
+	@GetMapping("signup")
 	public String showSignupPage(Model model) {
 		return new ModelSetter(model,ModelSetter.PAGE_SIGNUP)
 				
@@ -48,7 +48,7 @@ public class UserControl {
 				.buildAndReturnUrl();
 	}
 	
-	@PostMapping("/signup")
+	@PostMapping("signup")
 	public String InsertUser(@Validated SignupForm form, BindingResult result, RedirectAttributes redirect) {
 		//入力ﾁｪｯｸ
 		if(result.hasErrors()) {

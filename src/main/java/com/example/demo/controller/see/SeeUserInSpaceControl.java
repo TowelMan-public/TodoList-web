@@ -25,7 +25,7 @@ public class SeeUserInSpaceControl {
 	@Autowired
 	UserInSpaceService userInSpaceService;
 	
-	@GetMapping("/see/space/user/{spaceId}/{username}")
+	@GetMapping("see/space/user/{spaceId}/{username}")
 	public String showPage(@AuthenticationPrincipal UserDetailsImp user,
 			@PathVariable("spaceId") Integer spaceId ,@PathVariable("username") String username, Model model) {
 		return new ModelSetter(model,ModelSetter.PAGE_SEE_USER_IN_SPACE)
@@ -36,7 +36,7 @@ public class SeeUserInSpaceControl {
 					.buildAndReturnUrl();
 	}
 	
-	@PostMapping("/see/update/user")
+	@PostMapping("see/update/user")
 	public String updateUserInSpace(@AuthenticationPrincipal UserDetailsImp user,
 			@Validated UpdateUserInSpaceForm form, BindingResult result, RedirectAttributes redirect) {
 		//入力ﾁｪｯｸ

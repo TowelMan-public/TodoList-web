@@ -14,6 +14,7 @@ import com.example.demo.ModelSetter;
 import com.example.demo.UrlConfig;
 import com.example.demo.form.see.ListInSpace.HeaderSpaceForm;
 import com.example.demo.security.UserDetailsImp;
+import com.example.demo.service.SpaceService;
 import com.example.demo.service.ListInSpace.LitsInSpaceService;
 
 @Controller
@@ -21,10 +22,12 @@ import com.example.demo.service.ListInSpace.LitsInSpaceService;
 public class LitsInSpaceControl {
 	@Autowired
 	LitsInSpaceService litsInSpaceService;
+	@Autowired
+	SpaceService spaceService;
 	
 	public static final String URL = UrlConfig.ROOT_URL + "/see/space/{spaceId}";
 	
-	@GetMapping("/month/{assignmentDate}")
+	@GetMapping("month/{assignmentDate}")
 	public String showPageEachMonth(@AuthenticationPrincipal UserDetailsImp user,
 			@PathVariable("spaceId") Integer spaceId ,
 			@PathVariable("assignmentDate") String assignmentDate, Model model) throws ParseException {
@@ -36,7 +39,11 @@ public class LitsInSpaceControl {
 							.replace("{assignmentDate}", assignmentDate));
 		}
 		
-		HeaderSpaceForm headerSpaceForm = HeaderSpaceForm.newInstanceByMonth(assignmentDate);
+		HeaderSpaceForm headerSpaceForm = HeaderSpaceForm.newInstanceByMonth(
+				assignmentDate,
+				spaceService
+					.getSpace(user, spaceId)
+					.getSpaceName());
 		
 		return new ModelSetter(model,ModelSetter.PAGE_SEE_LIST_IN_SPACE_MONTH)
 				
@@ -51,7 +58,7 @@ public class LitsInSpaceControl {
 				.buildAndReturnUrl();
 	}
 	
-	@GetMapping("/day/{assignmentDate}")
+	@GetMapping("day/{assignmentDate}")
 	public String showPageEachDay(@AuthenticationPrincipal UserDetailsImp user,
 			@PathVariable("spaceId") Integer spaceId ,
 			@PathVariable("assignmentDate") String assignmentDate, Model model) throws ParseException {
@@ -63,7 +70,11 @@ public class LitsInSpaceControl {
 							.replace("{assignmentDate}", assignmentDate));
 		}
 		
-		HeaderSpaceForm headerSpaceForm = HeaderSpaceForm.newInstanceByDay(assignmentDate);
+		HeaderSpaceForm headerSpaceForm = HeaderSpaceForm.newInstanceByDay(
+				assignmentDate,
+				spaceService
+					.getSpace(user, spaceId)
+					.getSpaceName());
 		
 		return new ModelSetter(model,ModelSetter.PAGE_SEE_LIST_IN_SPACE_DAY)
 				
@@ -78,7 +89,7 @@ public class LitsInSpaceControl {
 				.buildAndReturnUrl();
 	}
 	
-	@GetMapping("/year/{assignmentDate}")
+	@GetMapping("year/{assignmentDate}")
 	public String showPageEachYear(@AuthenticationPrincipal UserDetailsImp user,
 			@PathVariable("spaceId") Integer spaceId ,
 			@PathVariable("assignmentDate") String assignmentDate, Model model) throws ParseException {
@@ -90,7 +101,11 @@ public class LitsInSpaceControl {
 							.replace("{assignmentDate}", assignmentDate));
 		}
 		
-		HeaderSpaceForm headerSpaceForm = HeaderSpaceForm.newInstanceByYear(assignmentDate);
+		HeaderSpaceForm headerSpaceForm = HeaderSpaceForm.newInstanceByYear(
+				assignmentDate,
+				spaceService
+					.getSpace(user, spaceId)
+					.getSpaceName());
 		
 		return new ModelSetter(model,ModelSetter.PAGE_SEE_LIST_IN_SPACE_YEAR)
 				

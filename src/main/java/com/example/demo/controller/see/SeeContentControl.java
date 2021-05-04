@@ -25,7 +25,7 @@ public class SeeContentControl {
 	@Autowired
 	ContentService contentService;
 	
-	@GetMapping("/see/content/{contentId}")
+	@GetMapping("see/content/{contentId}")
 	public String showPage(@AuthenticationPrincipal UserDetailsImp user,
 			@PathVariable("contentId") Integer contentId, Model model) {
 		return new ModelSetter(model,ModelSetter.PAGE_SEE_CONTENT)
@@ -41,7 +41,7 @@ public class SeeContentControl {
 					.buildAndReturnUrl();
 	}
 	
-	@PostMapping("/update/content")
+	@PostMapping("update/content")
 	public String updateList(@AuthenticationPrincipal UserDetailsImp user,
 			@Validated UpdateContentForm form, BindingResult result, RedirectAttributes redirect) {
 		//入力ﾁｪｯｸ
@@ -58,7 +58,7 @@ public class SeeContentControl {
 		return "redirect:" + UrlConfig.ROOT_URL + "/see/content/" + form.getContentId();
 	}
 	
-	@PostMapping("/delete/content")
+	@PostMapping("delete/content")
 	public String updateList(@AuthenticationPrincipal UserDetailsImp user,
 			@Validated DeleteNoneUserInSpaceForm form, BindingResult result, RedirectAttributes redirect) {
 		//入力ﾁｪｯｸ

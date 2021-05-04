@@ -29,7 +29,7 @@ public class SeeSpaceControl {
 	@Autowired
 	UserInSpaceService userInSpaceService;
 	
-	@GetMapping("/see/space/{spaceId}")
+	@GetMapping("see/space/{spaceId}")
 	public String showPage(@AuthenticationPrincipal UserDetailsImp user,
 			@PathVariable("spaceId") Integer spaceId, Model model) {
 		return new ModelSetter(model,ModelSetter.PAGE_SEE_SPACE)
@@ -51,7 +51,7 @@ public class SeeSpaceControl {
 					.buildAndReturnUrl();
 	}
 	
-	@PostMapping("/update/space")
+	@PostMapping("update/space")
 	public String updateSpace(@AuthenticationPrincipal UserDetailsImp user,
 			@Validated UpdateSpaceForm form, BindingResult result, RedirectAttributes redirect) {
 		//入力ﾁｪｯｸ
@@ -68,7 +68,7 @@ public class SeeSpaceControl {
 		return "redirect:" + UrlConfig.ROOT_URL + "/see/space/" + form.getSpaceId();
 	}
 	
-	@PostMapping("/delete/space")
+	@PostMapping("delete/space")
 	public String deleteSpace(@AuthenticationPrincipal UserDetailsImp user,
 			@Validated DeleteNoneUserInSpaceForm form, BindingResult result, RedirectAttributes redirect) {
 		//入力ﾁｪｯｸ
@@ -85,7 +85,7 @@ public class SeeSpaceControl {
 		return "redirect:" + UrlConfig.ROOT_URL + "/see/space/day";
 	}
 	
-	@GetMapping("/exit/space/{spaceId}")
+	@GetMapping("exit/space/{spaceId}")
 	public String exitSpace(@AuthenticationPrincipal UserDetailsImp user,
 			@PathVariable("spaceId") Integer spaceId, Model model) {
 		//処理
@@ -95,7 +95,7 @@ public class SeeSpaceControl {
 		return "redirect:" + UrlConfig.ROOT_URL + "/see/space/day";
 	}
 	
-	@PostMapping("/delete/space/user")
+	@PostMapping("delete/space/user")
 	public String deleteUserInSpace(@AuthenticationPrincipal UserDetailsImp user,
 			@Validated DeleteUserInSpaceForm form, BindingResult result, RedirectAttributes redirect) {
 		//入力ﾁｪｯｸ

@@ -40,7 +40,7 @@ public class UserConfingControl {
 					.buildAndReturnUrl();
 	}
 	
-	@PostMapping("/update/username")
+	@PostMapping("update/username")
 	public String updateUsername(@AuthenticationPrincipal UserDetailsImp user,
 			@Validated UpdateUsername form, BindingResult result, RedirectAttributes redirect) {
 		//入力ﾁｪｯｸ
@@ -66,7 +66,7 @@ public class UserConfingControl {
 		return "redirect:" + URL;
 	}
 	
-	@PostMapping("/update/password")
+	@PostMapping("update/password")
 	public String updatePassword(@AuthenticationPrincipal UserDetailsImp user,
 			@Validated UpdatePassword form, BindingResult result, RedirectAttributes redirect) {
 		//入力ﾁｪｯｸ

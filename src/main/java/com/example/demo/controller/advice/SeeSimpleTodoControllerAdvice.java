@@ -11,15 +11,17 @@ import com.example.demo.client.api.entity.SimpleTodoListEntity;
 import com.example.demo.security.UserDetailsImp;
 import com.example.demo.service.SimpleTodoService;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class SeeSimpleTodoControllerAdvice {
 	@Autowired
 	SimpleTodoService simpleTodoService;
 	
-	@ModelAttribute("SimpleForm")
+	//@ModelAttribute("SimpleForm")
 	public List<SimpleTodoListEntity> addSimpleForm(@AuthenticationPrincipal UserDetailsImp user) {
-		if(user != null)
-			return simpleTodoService.getSimpleTodoList(user);
+		if(user != null && user.getTokenForServer() != null) {
+			var list = simpleTodoService.getSimpleTodoList(user);
+			return list;
+		}
 		else
 			return null;
 	}

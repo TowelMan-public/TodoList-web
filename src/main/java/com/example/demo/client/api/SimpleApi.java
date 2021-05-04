@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Component
 public class SimpleApi {
-	private static final String ROOT_URL = ApiUrlRootConfing.ROOT_URL + "/simple";
+	private static final String ROOT_URL = ApiUrlRootConfing.ROOT_URL + "/simple/todo";
 	
 	@Autowired
 	RestTemplateAdapter restTemplateAdapter;

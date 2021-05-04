@@ -27,16 +27,11 @@ public class LitsInSpaceService {
 		List<ListInSpaceInMonthForm> listentity = new ArrayList<>();
 		
 		//各種必要なデータを求める
-		int year = Integer.parseInt(headerSpaceForm.getYrar());
-		int month = Integer.parseInt(headerSpaceForm.getMonth());
+		int year = headerSpaceForm.getYearNum();
+		int month = headerSpaceForm.getMonthNum();
 		
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(
-				Integer.parseInt(
-						headerSpaceForm.getYrar()),
-				Integer.parseInt(
-						headerSpaceForm.getMonth()),//+1されているのと同じ
-				1);
+		calendar.set(year, month - 1, 1);
 		calendar.add(Calendar.DAY_OF_MONTH, -1);
 		int lastDay = calendar.get(Calendar.DAY_OF_MONTH);
 		
@@ -71,12 +66,9 @@ public class LitsInSpaceService {
 				user,
 				listInSpaceApi.getListInDayInSpace(user,
 						spaceId,
-						Integer.parseInt(
-								headerSpaceForm.getYrar()),
-						Integer.parseInt(
-								headerSpaceForm.getMonth()),
-						Integer.parseInt(
-								headerSpaceForm.getDay())));
+						headerSpaceForm.getYearNum(),
+						headerSpaceForm.getMonthNum(),
+						headerSpaceForm.getDayNum()));
 	}
 
 	public List<ListInSpaceInYearForm> getListInSpaceEachYear(UserDetailsImp user, HeaderSpaceForm headerSpaceForm, Integer spaceId) {
@@ -86,11 +78,10 @@ public class LitsInSpaceService {
 			ListInSpaceInYearForm entity = listInSpaceLogicSharedService.toListInSpaceInYearForm(
 				listInSpaceApi.getCountListInMonth(user,
 						spaceId,
-						Integer.parseInt(
-								headerSpaceForm.getYrar()),
+						headerSpaceForm.getYearNum(),
 						i));
 			
-			entity.setAssignmentDate(headerSpaceForm.getYrar() + "/" + i);
+			entity.setAssignmentDate(headerSpaceForm.getYear() + "/" + i);
 			listentity.add(entity);
 		}
 				

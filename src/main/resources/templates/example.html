@@ -10,9 +10,9 @@
 	
 	<body>
 		<h1>ToDoリスト(^^♪</h1>
-		<th:brock th:insert="menu::menu(spaceId=${spaceId})"></th:brock>
+		<th:brock th:insert="menu/menu::menu(spaceId=${spaceId})"></th:brock>
 		<div class="see">
-			<th:brock th:insert="see::simple_todo(SimpleForm=${SimpleForm})"></th:brock>
+			<th:brock th:insert="see/simple_todo::simple_todo(SimpleForm=${SimpleForm})"></th:brock>
 			<div class="see_contents">
 				<th:brock th:insert="see/list_in_space_header::see_header(HeaderSpaceForm=${HeaderSpaceForm},spaceId=${spaceId})"></th:brock>
 				

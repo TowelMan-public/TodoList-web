@@ -25,7 +25,7 @@ public class SeeListControl {
 	@Autowired
 	ListService listService;
 	
-	@GetMapping("/see/list/{listId}")
+	@GetMapping("see/list/{listId}")
 	public String showPage(@AuthenticationPrincipal UserDetailsImp user,
 			@PathVariable("listId") Integer listId, Model model) {
 		return new ModelSetter(model,ModelSetter.PAGE_SEE_LIST)
@@ -44,7 +44,7 @@ public class SeeListControl {
 					.buildAndReturnUrl();
 	}
 	
-	@PostMapping("/update/list")
+	@PostMapping("update/list")
 	public String updateList(@AuthenticationPrincipal UserDetailsImp user,
 			@Validated UpdateListForm form, BindingResult result, RedirectAttributes redirect) {
 		//入力ﾁｪｯｸ
@@ -61,7 +61,7 @@ public class SeeListControl {
 		return "redirect:" + UrlConfig.ROOT_URL + "/see/list/" + form.getListId();
 	}
 	
-	@PostMapping("/delete/list")
+	@PostMapping("delete/list")
 	public String deleteList(@AuthenticationPrincipal UserDetailsImp user,
 			@Validated DeleteNoneUserInSpaceForm form, BindingResult result, RedirectAttributes redirect) {
 		//入力ﾁｪｯｸ

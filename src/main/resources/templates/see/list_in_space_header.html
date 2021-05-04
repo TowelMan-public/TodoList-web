@@ -6,7 +6,7 @@
 		</div>
 		<div class="see_contents_header_date" th:object="${HeaderSpaceForm}">
 			<div class="see_contents_header_date_button button"
-				th:href="@{/web/see/space/{spaceId}/year/{assignmentDate}(spaceId=${SpaceId},assignmentDate=HeaderSpaceForm.getYear())}">
+				th:href="@{/web/see/space/{spaceId}/year/{assignmentDate}(spaceId=${spaceId},assignmentDate=${HeaderSpaceForm.getYear())}}">
 				年
 			</div>
 			

@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //ログインエラー時の遷移先 ※パラメーターに「error」を付与
                 .failureUrl(LOGIN_PAGE)
                 //ログイン成功時の遷移先
-                .defaultSuccessUrl(UrlConfig.ROOT_URL + "/home",true)
+                .defaultSuccessUrl(UrlConfig.ROOT_URL + "/see/space/day",true)
                 //ログイン時のキー：ユーザー名
                 .usernameParameter("username")
                 //ログイン時のパスワード
