@@ -31,7 +31,7 @@ public class LitsInSpaceService {
 		int month = headerSpaceForm.getMonthNum();
 		
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(year, month - 1, 1);
+		calendar.set(year, month, 1);
 		calendar.add(Calendar.DAY_OF_MONTH, -1);
 		int lastDay = calendar.get(Calendar.DAY_OF_MONTH);
 		
@@ -81,7 +81,7 @@ public class LitsInSpaceService {
 						headerSpaceForm.getYearNum(),
 						i));
 			
-			entity.setAssignmentDate(headerSpaceForm.getYear() + "/" + i);
+			entity.setAssignmentDate(headerSpaceForm.getYearNum().toString() + "-" + i);
 			listentity.add(entity);
 		}
 				

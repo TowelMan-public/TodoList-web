@@ -66,10 +66,10 @@ public class ListInSpaceLogicSharedService {
 
 	public ListCountInDay toListCountInDay(Integer day, HeaderSpaceForm headerSpaceForm, CountlistInSpaceEntity countListInDay) {
 		ListCountInDay listCountInDay = new ListCountInDay();
-		listCountInDay.setGetListCount(countListInDay.getCount());
+		listCountInDay.setListCount(countListInDay.getCount());
 		listCountInDay.setDay(day.toString());
 		listCountInDay.setAssignmentDate(
-				dateUtility.dateTypeToDateFormatString(headerSpaceForm.getAssignmentDate()));
+				dateUtility.dateTypeToDateFormatString(headerSpaceForm.getAssignmentDate(),'-'));
 		return listCountInDay;
 	}
 	

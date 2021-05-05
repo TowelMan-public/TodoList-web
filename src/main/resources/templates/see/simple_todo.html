@@ -6,10 +6,10 @@
 				<div class="simple_todo_lists_scrollarea_inner"
 					th:each="simple : ${SimpleForm}" th:object="${simple}">
 					
-					<div class="simple_todo_lists"
+					<a class="simple_todo_lists"
 						th:href="@{/web/see/list/{listId}(listId=*{listId})}" 
 						th:text="*{listName}">
-					</div>
+					</a>
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,7 @@
 package com.example.demo.controller.see.LitsInSpace;
 
 import java.text.ParseException;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,6 +17,7 @@ import com.example.demo.form.see.ListInSpace.HeaderSpaceForm;
 import com.example.demo.security.UserDetailsImp;
 import com.example.demo.service.SpaceService;
 import com.example.demo.service.ListInSpace.LitsInSpaceService;
+import com.example.demo.utility.DateUtility;
 
 @Controller
 @RequestMapping(LitsInSpaceControl.URL)
@@ -24,6 +26,8 @@ public class LitsInSpaceControl {
 	LitsInSpaceService litsInSpaceService;
 	@Autowired
 	SpaceService spaceService;
+	@Autowired
+	DateUtility dateUtility;
 	
 	public static final String URL = UrlConfig.ROOT_URL + "/see/space/{spaceId}";
 	
@@ -118,5 +122,14 @@ public class LitsInSpaceControl {
 						litsInSpaceService.getListInSpaceEachYear(user,headerSpaceForm,spaceId))
 				
 				.buildAndReturnUrl();
+	}
+	
+	@GetMapping("day")
+	public String showPageEachDay(@AuthenticationPrincipal UserDetailsImp user,	@PathVariable("spaceId") Integer spaceId)
+			throws ParseException {
+		return "redirect:" + UrlConfig.ROOT_URL +
+				(("/see/space/" + spaceId.toString() + "/day/{assignmentDate}"
+						.replace("{assignmentDate}", 
+								dateUtility.dateTypeToDateFormatString(new Date(), '-'))));
 	}
 }

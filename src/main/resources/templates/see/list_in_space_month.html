@@ -10,12 +10,16 @@
 			<th>土曜日</th>
 		</tr>
 		<tr th:each="form : ${ShowForm}" th:object="${form}">
-			<td>
-				<table th:each="i : ${#numbers.sequence(0, 6)}">
-					<tr><th th:text="${form.get(i).getDate()} + '日'"
-							th:href="@{/web/space/{spaceId}/day/{assignmentDate}(spaceId=${spaceId},assignmentDate=${form.get(i).getAssignmentDate()})}"></th><tr>
-					<tr><td th:text="${form.get(i).getListCount()} + '件'"
-							th:href="@{/web/space/{spaceId}/day/{assignmentDate}(spaceId=${spaceId},assignmentDate=${form.get(i).getAssignmentDate()})}"></td></tr>
+			<td th:each="i : ${#numbers.sequence(0, 6)}">
+				<table>
+					<tr>
+						<th th:attr="data-href=@{/web/see/space/{spaceId}/day/{assignmentDate}(spaceId=${spaceId} == null ? '-1' : ${spaceId},assignmentDate=${form.getListCountinWeek().get(i).getAssignmentDate()})}"
+							th:text="${form.getListCountinWeek().get(i).getDay()} == null ? '' : ${form.getListCountinWeek().get(i).getDay()} + '日'"></th>
+					</tr>
+					<tr>
+						<th th:attr="data-href=@{/web/see/space/{spaceId}/day/{assignmentDate}(spaceId=${spaceId} == null ? '-1' : ${spaceId},assignmentDate=${form.getListCountinWeek().get(i).getAssignmentDate()})}"
+							th:text="${form.getListCountinWeek().get(i).getListCount()} == null ? '' : ${form.getListCountinWeek().get(i).getListCount()} + '件'"></th>
+					</tr>
 				</table>
 			</td>
 		</tr>

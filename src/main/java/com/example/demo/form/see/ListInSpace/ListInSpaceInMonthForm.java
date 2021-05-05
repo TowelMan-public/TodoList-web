@@ -19,6 +19,6 @@ public class ListInSpaceInMonthForm {
 	public static class ListCountInDay{
 		private String day;
 		private String assignmentDate;
-		private Integer getListCount;
+		private Integer listCount;
 	}
 }

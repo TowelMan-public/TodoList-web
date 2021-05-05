@@ -22,10 +22,10 @@
 			<th>削除</th>
 		</tr>
 		<tr th:each="form : ${ShowForm}" th:object="${form}">
-			<td th:href="@{/web/see/space/user/{spaceId}/{username}(spaceId=*{spaceId},username=*{username})}"
+			<td th:attr="data-href=@{/web/see/space/user/{spaceId}/{username}(spaceId=*{spaceId},username=*{username})}"
 				th:text="*{username}">
 			</td>
-			<td th:href="@{/web/see/space/user/{spaceId}/{username}(spaceId=*{spaceId},username=*{username})}"
+			<td th:attr="data-href=@{/web/see/space/user/{spaceId}/{username}(spaceId=*{spaceId},username=*{username})}"
 				th:text="*{権限}">
 			</td>
 			<td>

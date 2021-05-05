@@ -19,10 +19,10 @@
 			<th>削除</th>
 		</tr>
 		<tr th:each="form : ${ShowForm}" th:object="${form}">
-			<td th:href="@{/web/see/content/{contentId}(contentId=*{contentId})}"
+			<td th:attr="data-href=@{/web/see/content/{contentId}(contentId=*{contentId})}"
 				th:text="*{contentTitle}">
 			</td>
-			<td th:href="@{/web/see/content/{contentId}(contentId=*{contentId})}"
+			<td th:attr="data-href=@{/web/see/content/{contentId}(contentId=*{contentId})}"
 				th:text="*{contentText}">
 			</td>
 			<td>

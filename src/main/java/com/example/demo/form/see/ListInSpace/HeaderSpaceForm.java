@@ -12,7 +12,7 @@ import lombok.Data;
 public class HeaderSpaceForm {
 	
 	private Date assignmentDate;
-	private String assignmentType;
+	private final String assignmentType;
 	private String spaceName;
 	
 	private static final String DAY = "day";
@@ -81,15 +81,15 @@ public class HeaderSpaceForm {
 		switch(assignmentType) {
 		case DAY:
 			format = new SimpleDateFormat("yyyy-M-d");
-			calendar.set(Calendar.DAY_OF_MONTH, -1);
+			calendar.add(Calendar.DAY_OF_MONTH, -1);
 			break;
 		case MONTH:
 			format = new SimpleDateFormat("yyyy-M");
-			calendar.set(Calendar.MONTH, -1);
+			calendar.add(Calendar.MONTH, -1);
 			break;
 		case YEAR:
 			format = new SimpleDateFormat("yyyy");
-			calendar.set(Calendar.YEAR, -1);
+			calendar.add(Calendar.YEAR, -1);
 			break;
 		}
 		
@@ -104,20 +104,33 @@ public class HeaderSpaceForm {
 		
 		switch(assignmentType) {
 		case DAY:
-			format = new SimpleDateFormat("yyyy/M/d");
-			calendar.set(Calendar.DAY_OF_MONTH, 1);
+			format = new SimpleDateFormat("yyyy-M-d");
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
 			break;
 		case MONTH:
-			format = new SimpleDateFormat("yyyy/M");
-			calendar.set(Calendar.MONTH, 1);
+			format = new SimpleDateFormat("yyyy-M");
+			calendar.add(Calendar.MONTH, 1);
 			break;
 		case YEAR:
 			format = new SimpleDateFormat("yyyy");
-			calendar.set(Calendar.YEAR, 1);
+			calendar.add(Calendar.YEAR, 1);
 			break;
 		}
 		
 		return format.format(
 				calendar.getTime());
+	}
+	
+	public String getAssignmentDateString() {
+		switch(assignmentType) {
+		case DAY:
+			return getDay().replace('-', '/');
+		case MONTH:
+			return getMonth().replace('-', '/');
+		case YEAR:
+			return getYear();
+		default:
+			return null;
+		}
 	}
 }
