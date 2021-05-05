@@ -10,6 +10,7 @@ import com.example.demo.client.api.SpaceApi;
 import com.example.demo.client.api.entity.SpaceEntity;
 import com.example.demo.form.delete.DeleteNoneUserInSpaceForm;
 import com.example.demo.form.insert.InsertSpaceForm;
+import com.example.demo.form.insert.JoinPublicSpaceForm;
 import com.example.demo.form.update.UpdateSpaceForm;
 import com.example.demo.security.UserDetailsImp;
 
@@ -54,5 +55,9 @@ public class SpaceService {
 
 	public void exitSpace(UserDetailsImp user, Integer spaceId) {
 		spaceApi.secessionSpace(user, spaceId);
+	}
+
+	public void joinPublicSpace(UserDetailsImp user, JoinPublicSpaceForm form) {
+		publicSpaceApi.joinSpace(user, form.getSpaceId());
 	}
 }

@@ -9,7 +9,10 @@
 		<tr th:each="form : ${ShowForm}" th:object="${form}">
 			<td th:text="*{spaceId}"></td>
 			<td th:text="*{spaceName}"></td>
-			<td><div class="dbutton" th:href="@{/web/join/space/public/{spaceId}(spaceId=*{spaceId})}">加入</div></td>
+			<form th:action="@{/web/join/space/public}" method="post" th:object="${JoinPublicSpaceForm}" class="button_form"> 
+				<input type="hidden" name="spaceId" th:value="${spaceId}" th:field="${JoinPublicSpaceForm.spaceId}"/>
+				<input type="submit" class="button" value="加入" />
+			</form>
 		</tr>
 	</table>
 </th:brock>
