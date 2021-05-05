@@ -39,7 +39,9 @@ public class UserDetailsServiceImp{
 	}
 
 	public void updateUsername(UserDetailsImp user, UpdateUsername form) {
-		userApi.updateUsername(user, form.getUsername());
+		user.setTokenForServer(
+				userApi.updateUsername(user, form.getUsername()));
+		user.setUsername(form.getUsername());
 	}
 
 	public void updatePassword(UserDetailsImp user, UpdatePassword form) {

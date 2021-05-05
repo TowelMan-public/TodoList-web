@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import com.example.demo.client.api.entity.CountlistInSpaceEntity;
 import com.example.demo.client.api.entity.SpaceEntity;
 import com.example.demo.client.api.entity.TodoListEachUserEntity;
-import com.example.demo.client.api.entity.VoidEntity;
 import com.example.demo.client.rest.RestTemplateAdapter;
 import com.example.demo.security.UserDetailsImp;
 
@@ -67,7 +66,7 @@ public class MySpaceApi {
 	public List<SpaceEntity> getMySpace(UserDetailsImp user){
 		final String URL = ROOT_URL + "/day/get";
 		
-		return restTemplateAdapter.getForObjectsWhenLogined(URL, new VoidEntity(), SpaceEntity.class, user);
+		return restTemplateAdapter.getForObjectsWhenLogined(URL, null, SpaceEntity.class, user);
 	}
 	
 	@Data

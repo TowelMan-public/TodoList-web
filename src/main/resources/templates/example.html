@@ -40,7 +40,9 @@
 		<div class="see">
 			<th:brock th:insert="see/simple_todo::simple_todo(SimpleForm=${SimpleForm})"></th:brock>
 			<div class="see_contents">
-				<th:brock th:insert="see/list_in_space_header::see_header(HeaderSpaceForm=${HeaderSpaceForm},spaceId=${spaceId})"></th:brock>
+				<th:brock
+					th:if="${WebSeeContentType}=='see_list_in_space_day' or ${WebSeeContentType}=='see_list_in_space_month' or ${WebSeeContentType}=='see_list_in_space_year'"
+					th:insert="see/list_in_space_header::see_header(HeaderSpaceForm=${HeaderSpaceForm},spaceId=${spaceId})"></th:brock>
 				
 				<th:brock
 					th:if="${WebSeeContentType}=='see_list_in_space_day'"

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.client.api.entity.SpaceEntity;
-import com.example.demo.client.api.entity.VoidEntity;
 import com.example.demo.client.rest.RestTemplateAdapter;
 import com.example.demo.security.UserDetailsImp;
 
@@ -22,7 +21,7 @@ public class PublicSpaceApi {
 	public List<SpaceEntity> getPublicSpace(UserDetailsImp user){
 		final String URL = ROOT_URL + "/get";
 		
-		return restTemplateAdapter.getForObjectsWhenLogined(URL, new VoidEntity(), SpaceEntity.class, user);
+		return restTemplateAdapter.getForObjectsWhenLogined(URL, null, SpaceEntity.class, user);
 	}
 	
 	public void joinSpace(UserDetailsImp user,int spaceId){
@@ -31,7 +30,7 @@ public class PublicSpaceApi {
 		Dto dto = new Dto();
 		dto.setSpaceId(spaceId);
 		
-		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
+		restTemplateAdapter.postForObjectWhenLogined(URL, dto, Void.class, user);
 	}
 	
 	@Data

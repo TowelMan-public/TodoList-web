@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import com.example.demo.client.api.entity.CountlistInSpaceEntity;
 import com.example.demo.client.api.entity.TodoListEachUserEntity;
-import com.example.demo.client.api.entity.VoidEntity;
 import com.example.demo.client.rest.RestTemplateAdapter;
 import com.example.demo.security.UserDetailsImp;
 

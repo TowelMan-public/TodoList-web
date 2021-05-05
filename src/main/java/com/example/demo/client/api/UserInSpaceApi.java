@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.client.api.entity.UserInSpaceEntity;
-import com.example.demo.client.api.entity.VoidEntity;
 import com.example.demo.client.rest.RestTemplateAdapter;
 import com.example.demo.security.UserDetailsImp;
 
@@ -26,7 +25,7 @@ public class UserInSpaceApi {
 		dto.setSpaceId(spaceId);
 		dto.setUsername(username);
 		
-		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
+		restTemplateAdapter.postForObjectWhenLogined(URL, dto, Void.class, user);
 	}
 	
 	public List<UserInSpaceEntity> getUserInSpace(UserDetailsImp user, int spaceId){
@@ -35,7 +34,7 @@ public class UserInSpaceApi {
 		Dto dto = new Dto();
 		dto.setSpaceId(spaceId);
 		
-		return restTemplateAdapter.getForObjectsWhenLogined(URL, new VoidEntity(), UserInSpaceEntity.class, user);
+		return restTemplateAdapter.getForObjectsWhenLogined(URL, null, UserInSpaceEntity.class, user);
 	}
 	
 	public void insertUserInSpace(UserDetailsImp user, DtoBuilder builder) {
@@ -43,7 +42,7 @@ public class UserInSpaceApi {
 		
 		Dto dto = builder.build();
 		
-		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
+		restTemplateAdapter.postForObjectWhenLogined(URL, dto, Void.class, user);
 	}
 	
 	public void updateUserAuthortyInSpace(UserDetailsImp user, DtoBuilder builder) {
@@ -51,7 +50,7 @@ public class UserInSpaceApi {
 		
 		Dto dto = builder.build();
 		
-		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
+		restTemplateAdapter.postForObjectWhenLogined(URL, dto, Void.class, user);
 	}
 	
 	public class DtoBuilder{

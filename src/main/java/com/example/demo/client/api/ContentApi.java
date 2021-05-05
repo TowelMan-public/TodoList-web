@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.client.api.entity.ContentEntity;
-import com.example.demo.client.api.entity.VoidEntity;
 import com.example.demo.client.rest.RestTemplateAdapter;
 import com.example.demo.security.UserDetailsImp;
 
@@ -26,7 +25,7 @@ public class ContentApi {
 		dto.setContentId(contentId);
 		
 		//処理
-		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
+		restTemplateAdapter.postForObjectWhenLogined(URL, dto, Void.class, user);
 	}
 	
 	public ContentEntity getContent(UserDetailsImp user, int contentId) {
@@ -49,7 +48,7 @@ public class ContentApi {
 		Dto dto = builder.build();
 		
 		//処理
-		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
+		restTemplateAdapter.postForObjectWhenLogined(URL, dto, Void.class, user);
 	}
 	
 	public void updateContent(UserDetailsImp user,UpdateDtoBuilder builder) {
@@ -60,7 +59,7 @@ public class ContentApi {
 		Dto dto = builder.build();
 		
 		//処理
-		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
+		restTemplateAdapter.postForObjectWhenLogined(URL, dto, Void.class, user);
 	}
 
 	public class InsertDtoBuilder{

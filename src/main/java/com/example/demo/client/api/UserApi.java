@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.client.api.entity.UserEntity;
-import com.example.demo.client.api.entity.VoidEntity;
 import com.example.demo.client.rest.RestTemplateAdapter;
 import com.example.demo.security.UserDetailsImp;
 
@@ -31,19 +30,19 @@ public class UserApi {
 	public void logout(UserDetailsImp user) {
 		final String URL = ApiUrlRootConfing.ROOT_URL + "/logout";
 		
-		restTemplateAdapter.postForObjectWhenLogined(URL, new VoidEntity(), VoidEntity.class, user);
+		restTemplateAdapter.postForObjectWhenLogined(URL, null, Void.class, user);
 	}
 	
 	public void deleteUser(UserDetailsImp user) {
 		final String URL = ROOT_URL + "/delete";
 		
-		restTemplateAdapter.postForObjectWhenLogined(URL, new VoidEntity(), VoidEntity.class, user);
+		restTemplateAdapter.postForObjectWhenLogined(URL, null, Void.class, user);
 	}
 	
 	public UserEntity getUser(UserDetailsImp user) {
 		final String URL = ROOT_URL + "/get";
 		
-		return restTemplateAdapter.getForObjectWhenLogined(URL, new VoidEntity(), UserEntity.class, user);
+		return restTemplateAdapter.getForObjectWhenLogined(URL, null, UserEntity.class, user);
 	}
 	
 	public void insertUser(InsertDtobBuilder builder) {
@@ -51,7 +50,7 @@ public class UserApi {
 		
 		Dto dto = builder.build();
 		
-		restTemplateAdapter.postForObject(URL, dto, VoidEntity.class);
+		restTemplateAdapter.postForObject(URL, dto, Void.class);
 	}
 	
 	public void updatePassword(UserDetailsImp user,String newPassword, String oneMorePassword) {
@@ -61,16 +60,16 @@ public class UserApi {
 		dto.setNewPassword(newPassword);
 		dto.setOneMorePassword(oneMorePassword);
 		
-		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
+		restTemplateAdapter.postForObjectWhenLogined(URL, dto, Void.class, user);
 	}
 	
-	public void updateUsername(UserDetailsImp user,String newUsername) {
+	public String updateUsername(UserDetailsImp user,String newUsername) {
 		final String URL = ROOT_URL + "/username/update";
 		
 		Dto dto = new Dto();
 		dto.setNewUsername(newUsername);
 		
-		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
+		return restTemplateAdapter.postForObjectWhenLogined(URL, dto, String.class, user);
 	}
 	
 	public class InsertDtobBuilder{

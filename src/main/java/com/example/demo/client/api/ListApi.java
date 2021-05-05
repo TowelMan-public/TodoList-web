@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import com.example.demo.client.api.entity.ContentEntity;
 import com.example.demo.client.api.entity.ListEntity;
-import com.example.demo.client.api.entity.VoidEntity;
 import com.example.demo.client.rest.RestTemplateAdapter;
 import com.example.demo.security.UserDetailsImp;
 
@@ -27,7 +26,7 @@ public class ListApi {
 		Dto dto = new Dto();
 		dto.setListId(listId);
 		
-		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
+		restTemplateAdapter.postForObjectWhenLogined(URL, dto, Void.class, user);
 	}
 	
 	public ListEntity getList(UserDetailsImp user, int listId) {
@@ -53,7 +52,7 @@ public class ListApi {
 		
 		Dto dto = builder.build();
 		
-		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
+		restTemplateAdapter.postForObjectWhenLogined(URL, dto, Void.class, user);
 	}
 	
 	public void updateList(UserDetailsImp user, UpdateDtoBuilder builder) {
@@ -61,7 +60,7 @@ public class ListApi {
 		
 		Dto dto = builder.build();
 		
-		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
+		restTemplateAdapter.postForObjectWhenLogined(URL, dto, Void.class, user);
 	}
 	
 	public class InsertDtoBuilder{

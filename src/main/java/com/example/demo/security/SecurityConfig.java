@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.example.demo.UrlConfig;
 
@@ -42,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
             .and()
             .logout()
-            	.logoutUrl(UrlConfig.ROOT_URL + "/logout")
+            	.logoutRequestMatcher(new AntPathRequestMatcher(UrlConfig.ROOT_URL + "/logout", "GET"))
                 //ログアウト時の遷移先 POSTでアクセス
                 .logoutSuccessUrl(LOGIN_PAGE);
     }

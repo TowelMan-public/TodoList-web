@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.client.api.entity.SimpleTodoListEntity;
-import com.example.demo.client.api.entity.VoidEntity;
 import com.example.demo.client.rest.RestTemplateAdapter;
 import com.example.demo.security.UserDetailsImp;
 
@@ -23,7 +22,7 @@ public class SimpleApi {
 	public List<SimpleTodoListEntity> getSimpleTodoLists(UserDetailsImp user){
 		final String URL = ROOT_URL + "/get";
 		
-		return restTemplateAdapter.getForObjectsWhenLogined(URL, new VoidEntity(), SimpleTodoListEntity.class, user);
+		return restTemplateAdapter.getForObjectsWhenLogined(URL, null, SimpleTodoListEntity.class, user);
 	}
 	
 	public void insertSimpleTodoList(UserDetailsImp user,InsertDtoBuilder builder) {
@@ -31,7 +30,7 @@ public class SimpleApi {
 		
 		Dto dto = builder.build();
 		
-		restTemplateAdapter.postForObjectWhenLogined(URL, dto, VoidEntity.class, user);
+		restTemplateAdapter.postForObjectWhenLogined(URL, dto, Void.class, user);
 	}
 	
 	public class InsertDtoBuilder{

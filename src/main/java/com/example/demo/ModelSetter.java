@@ -38,7 +38,7 @@ public class ModelSetter {
 	public static final WebSeeContentType PAGE_USER_CONFING = new WebSeeContentType ("user_confing",WebSeeContentType.EXAMPLE_URL);
 	public static final WebSeeContentType PAGE_LOGIN = new WebSeeContentType (null,"/login");
 	public static final WebSeeContentType PAGE_SIGNUP = new WebSeeContentType (null,"/signup");
-	public static final WebSeeContentType PAGE_WITHDRAWAL = new WebSeeContentType (null,"/withdrawal");
+	public static final WebSeeContentType PAGE_WITHDRAWAL = new WebSeeContentType (null,"/user/withdrawal");
 	
 	public ModelSetter(Model pageModel,WebSeeContentType webSeeContentType) {
 		model = pageModel; 
