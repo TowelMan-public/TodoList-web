@@ -39,7 +39,7 @@ public class LitsInSpaceService {
 		int nowDay = 1 - (calendar.get(Calendar.DAY_OF_WEEK) - 1);
 		
 		//データ取得・データセット
-		for(nowDay = 1;nowDay <= lastDay;) {
+		for(;nowDay <= lastDay;) {
 			List<ListInSpaceInMonthForm.ListCountInDay> listCountInDayList = new ArrayList<>();
 			
 			//一週間分のデータ取得
