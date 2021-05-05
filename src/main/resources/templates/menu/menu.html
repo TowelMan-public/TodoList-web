@@ -1,8 +1,8 @@
 <th:block th:fragment="menu(spaceId)">
 	<ul class="menus">
-		<li class="menu"><a th:href="@{/web/see/day}">見る</a>
+		<li class="menu"><a th:href="@{/web/see/space/day}">見る</a>
 		  <ul>
-		     <li><a th:href="@{/web/see/day}">自分総合</a></li>
+		     <li><a th:href="@{/web/see/space/day}">自分総合</a></li>
 		     <li><a th:if="${spaceId!=null}" th:href="@{/web/see/space/{spaceId}/day(spaceId=${spaceId})}">プロジェクト</a></li>
 		  </ul>
 		</li>

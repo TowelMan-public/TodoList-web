@@ -64,7 +64,7 @@ public class MySpaceApi {
 	}
 	
 	public List<SpaceEntity> getMySpace(UserDetailsImp user){
-		final String URL = ROOT_URL + "/day/get";
+		final String URL = ROOT_URL + "/get";
 		
 		return restTemplateAdapter.getForObjectsWhenLogined(URL, null, SpaceEntity.class, user);
 	}

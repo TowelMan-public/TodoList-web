@@ -5,21 +5,20 @@ import java.util.Date;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.example.demo.RegexpMessage;
 import com.example.demo.utility.DateUtility;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class InsertSimpleForm {
-	@Autowired
 	DateUtility dateUtility;
+	
+	public InsertSimpleForm() {
+		dateUtility = new DateUtility();
+	}
 	
 	@NotBlank(message=RegexpMessage.EMPTY)
 	private String listName;
@@ -30,12 +29,14 @@ public class InsertSimpleForm {
 	
 	@AssertTrue(message = RegexpMessage.DATE)
 	public boolean isNotDate() {
-		return listDate == null || dateUtility.isDateFormat(listDate);
+		return listDate == null || 
+				dateUtility.isDateFormat(listDate);
 	}
 	
 	@AssertTrue(message = RegexpMessage.TIME)
 	public boolean isNotTime() {
-		return listTime == null || dateUtility.isTimeFormat(listTime);
+		return listTime == null ||
+				dateUtility.isTimeFormat(listTime);
 	}
 	
 	public Date getListDateToDate() {

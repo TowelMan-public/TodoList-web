@@ -4,13 +4,14 @@
 		<tr>
 			<th>スペースId</th>
 			<th>スペース名</th>
+			<th>範囲</th>
 		</tr>
 		<tr th:each="form : ${ShowForm}" th:object="${form}">
-			<td th:attr="data-href=@{/web/see/space/*{spaceId}/day(spaceId=*{spaceId})}" th:text="*{spaceId}"></td>
-			<td th:attr="data-href=@{/web/see/space/*{spaceId}/day(spaceId=*{spaceId})}" th:text="*{spaceName}"></td>
-			<td th:if="${form.scopeId == 1}" th:attr="data-href=@{/web/see/space/*{spaceId}/day(spaceId=*{spaceId})}" th:text="PUBLIC"></td>
-			<td th:if="${form.scopeId == 2}" th:attr="data-href=@{/web/see/space/*{spaceId}/day(spaceId=*{spaceId})}" th:text="PROTECTED"></td>
-			<td th:if="${form.scopeId == 3}" th:attr="data-href=@{/web/see/space/*{spaceId}/day(spaceId=*{spaceId})}" th:text="PRIVATE"></td>
+			<td th:attr="data-href=@{/web/see/space/{spaceId}/day(spaceId=*{spaceId})}" th:text="*{spaceId}"></td>
+			<td th:attr="data-href=@{/web/see/space/{spaceId}/day(spaceId=*{spaceId})}" th:text="*{spaceName}"></td>
+			<td th:if="${form.scopeId == 1}" th:attr="data-href=@{/web/see/space/{spaceId}/day(spaceId=*{spaceId})}" th:text="PUBLIC"></td>
+			<td th:if="${form.scopeId == 2}" th:attr="data-href=@{/web/see/space/{spaceId}/day(spaceId=*{spaceId})}" th:text="PROTECTED"></td>
+			<td th:if="${form.scopeId == 3}" th:attr="data-href=@{/web/see/space/{spaceId}/day(spaceId=*{spaceId})}" th:text="PRIVATE"></td>
 		</tr>
 	</table>
 </th:brock>

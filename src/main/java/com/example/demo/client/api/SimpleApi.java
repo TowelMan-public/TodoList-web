@@ -36,6 +36,10 @@ public class SimpleApi {
 	public class InsertDtoBuilder{
 		private Dto dto;
 		
+		public InsertDtoBuilder() {
+			dto = new Dto();
+		}
+		
 		public InsertDtoBuilder setListName(String listName) {
 			dto.setListName(listName);
 			return this;
