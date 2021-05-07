@@ -12,12 +12,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class InsertListForm {
-	@Autowired
 	DateUtility dateUtility;
+	
+	public InsertListForm(){
+		dateUtility = new DateUtility();
+	}
 	
 	@NotBlank(message=RegexpMessage.EMPTY)
 	private String listName;

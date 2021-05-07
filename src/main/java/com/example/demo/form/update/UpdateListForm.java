@@ -4,31 +4,30 @@ import java.util.Date;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.validation.constraints.NotNull;
 
 import com.example.demo.RegexpMessage;
-import com.example.demo.form.delete.DeleteNoneUserInSpaceForm;
 import com.example.demo.utility.DateUtility;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class UpdateListForm {
-	@Autowired
 	DateUtility dateUtility;
 	
-	@NotBlank(message=RegexpMessage.EMPTY)
-	private String listId;
+	public UpdateListForm() {
+		dateUtility = new DateUtility();
+	}
+	
+	@NotNull(message=RegexpMessage.EMPTY)
+	private Integer listId;
 	@NotBlank(message=RegexpMessage.EMPTY)
 	private String listName;
-	@AssertTrue(message = RegexpMessage.DATE)
+	@NotBlank(message = RegexpMessage.DATE)
 	private String listDate;
-	@AssertTrue(message = RegexpMessage.TIME)
+	@NotBlank(message = RegexpMessage.TIME)
 	private String listTime;
 	
 	@AssertTrue(message = RegexpMessage.DATE)

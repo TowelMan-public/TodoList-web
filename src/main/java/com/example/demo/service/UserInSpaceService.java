@@ -53,7 +53,7 @@ public class UserInSpaceService {
 
 	public void deleteUserInSpace(UserDetailsImp user, DeleteUserInSpaceForm form) {
 		userInSpaceApi.deleteUserInSpace(user,
-				Integer.parseInt(form.getId()),
+				form.getId(),
 				form.getUsername());
 	}
 }

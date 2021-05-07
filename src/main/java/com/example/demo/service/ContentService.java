@@ -22,15 +22,15 @@ public class ContentService {
 												 .setListId(listId));
 	}
 
-	public UpdateContentForm getContent(Integer contentId) {
-		ContentEntity entity = contentApi.getContent(null, contentId);
+	public UpdateContentForm getContent(UserDetailsImp user, Integer contentId) {
+		ContentEntity entity = contentApi.getContent(user, contentId);
 		
 		//データセット
 		UpdateContentForm form = new UpdateContentForm();
 		form.setContentId(
 				entity.getContentId().toString());
 		form.setContentText(entity.getContentText());
-		form.setContentTitle(form.getContentTitle());
+		form.setContentTitle(entity.getTitle());
 		return form;
 	}
 
@@ -39,10 +39,10 @@ public class ContentService {
 												 .setContentId(
 														 Integer.parseInt(form.getContentId()))
 												 .setContentText(form.getContentText())
-												 .setTitle(form.getContentText()));
+												 .setTitle(form.getContentTitle()));
 	}
 
 	public void deleteContent(UserDetailsImp user, DeleteNoneUserInSpaceForm form) {
-		contentApi.deleteContent(user, Integer.parseInt(form.getId()));
+		contentApi.deleteContent(user, form.getId());
 	}
 }

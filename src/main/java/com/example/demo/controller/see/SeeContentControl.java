@@ -33,7 +33,7 @@ public class SeeContentControl {
 					.setContentId(contentId)
 					
 					.setUpdateContentForm(
-							contentService.getContent(contentId))
+							contentService.getContent(user,contentId))
 					
 					.setDeleteNoneUserInSpaceForm(
 							new DeleteNoneUserInSpaceForm())

@@ -3,11 +3,12 @@
 	<form th:action="@{/web/update/content}" method="post" th:object="${UpdateContentForm}"> 
 		<input type="hidden" name="contentId" th:field="*{contentId}"/>
 		<div>内容のタイトル：<input type="text" name="contentTitle" th:field="*{contentTitle}"/></div> <div th:if="${#fields.hasErrors('contentTitle')}" th:errors="*{contentTitle}" /><br>
-		<div>内容の詳細：<input type="text" name="contentText" th:field="*{contentText}"/></div> <div th:if="${#fields.hasErrors('contentText')}" th:errors="*{contentText}" /><br>
+		<div>内容の詳細<br><textarea cols="50" rows="10" name="contentText" th:field="*{contentText}"/></div> <div th:if="${#fields.hasErrors('contentText')}" th:errors="*{contentText}" /><br>
 		<input type="submit" class="button" value="変更" />
-		<form th:action="@{/web/delete/content}" method="post" th:object="${DeleteNoneUserInSpaceForm}" class="button_form"> 
-			<input type="hidden" name="id" th:value="${contentId}" th:field="${DeleteNoneUserInSpaceForm.id}"/>
-			<input type="submit" class="delete_button" value="削除" />
-		</form>
-	</form><br>
+		<input type="submit" class="delete_button" value="削除" form="delete_form"/>
+	</form>
+	<form th:action="@{/web/delete/content}" method="post" th:object="${DeleteNoneUserInSpaceForm}" class="button_form" id="delete_form"> 
+		<input type="hidden" name="id" th:value="${contentId}"/>
+	</form>
+	<br>
 <th:brock>

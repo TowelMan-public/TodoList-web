@@ -1,6 +1,7 @@
 package com.example.demo.form.delete;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.example.demo.RegexpMessage;
 
@@ -12,6 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class DeleteNoneUserInSpaceForm {
-	@NotBlank(message=RegexpMessage.INTEGER)
-	private String id;
+	@NotNull(message=RegexpMessage.INTEGER)
+	private Integer id;
 }

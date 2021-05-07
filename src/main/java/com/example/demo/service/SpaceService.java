@@ -50,7 +50,7 @@ public class SpaceService {
 	}
 
 	public void deleteSpace(UserDetailsImp user, DeleteNoneUserInSpaceForm form) {
-		spaceApi.deleteSpace(user, Integer.parseInt(form.getId()));
+		spaceApi.deleteSpace(user, form.getId());
 	}
 
 	public void exitSpace(UserDetailsImp user, Integer spaceId) {

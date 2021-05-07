@@ -248,3 +248,7 @@ input[type="password"]:focus{
 .parent_table tr:nth-child(2n+1) td {
   background-color: #ffdaf8;
 }
+
+textarea {
+	font-size: 20px;
+}

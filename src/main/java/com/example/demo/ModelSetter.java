@@ -151,6 +151,11 @@ public class ModelSetter {
 		return this;
 	}
 	
+	public ModelSetter setJoinPublicSpaceForm(JoinPublicSpaceForm joinPublicSpaceForm){
+		setOther("JoinPublicSpaceForm", joinPublicSpaceForm);
+		return this;
+	}
+	
 	public ModelSetter setOther(String keyName,Object object){
 		if(!model.containsAttribute(keyName))
 			model.addAttribute(keyName, object);

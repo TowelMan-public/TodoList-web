@@ -6,11 +6,13 @@
 		<div>日付：<input type="text" name="listDate" th:field="*{listDate}"/></div> <div th:if="${#fields.hasErrors('listDate')}" th:errors="*{listDate}" /><br>
 		<div>時間：<input type="text" name="listTime" th:field="*{listTime}"/></div> <div th:if="${#fields.hasErrors('listTime')}" th:errors="*{listTime}" /><br>
 		<input type="submit" class="button" value="変更" />
-		<form th:action="@{/web/delete/list}" method="post" th:object="${DeleteNoneUserInSpaceForm}" class="button_form"> 
-			<input type="hidden" name="id" th:value="${listId}" th:field="${DeleteNoneUserInSpaceForm.id}"/>
-			<input type="submit" class="delete_button" value="削除" />
-		</form>
-	</form><br>
+		<input type="submit" class="delete_button" value="削除" form="delete_form"/>
+	</form>
+	<form th:action="@{/web/delete/list}" method="post" th:object="${DeleteNoneUserInSpaceForm}" class="button_form" id="delete_form"> 
+			<input type="hidden" name="id" th:value="${listId}" />
+	</form>
+	<br>
+	
 	<a th:href="@{/web/insert/content/{listId}(listId=${listId})}">・このリスト内に新しく内容を登録する</a><br><br>
 	<table border="1" align="center" class="see_contents_table parent_table">
 		<tr>
@@ -20,14 +22,15 @@
 		</tr>
 		<tr th:each="form : ${ShowForm}" th:object="${form}">
 			<td th:attr="data-href=@{/web/see/content/{contentId}(contentId=*{contentId})}"
-				th:text="*{contentTitle}">
+				style="min-width: 8em;"
+				th:text="*{title}">
 			</td>
 			<td th:attr="data-href=@{/web/see/content/{contentId}(contentId=*{contentId})}"
 				th:text="*{contentText}">
 			</td>
 			<td>
 				<form th:action="@{/web/delete/content}" method="post" th:object="${DeleteNoneUserInSpaceForm}" class="button_form"> 
-					<input type="hidden" name="id" th:value="${form.contentId}" th:field="${DeleteNoneUserInSpaceForm.id}"/>
+					<input type="hidden" name="id" th:value="${form.contentId}"/>
 					<input type="submit" class="delete_button" value="削除" />
 				</form>
 			</td>

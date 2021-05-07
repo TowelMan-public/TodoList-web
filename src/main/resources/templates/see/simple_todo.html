@@ -3,13 +3,12 @@
 		<div class="simple_todo_inner">
 			<h2 class="simple_todo_header">シンプルToDo</h2>
 			<div class="simple_todo_lists_scrollarea_outer">
-				<div class="simple_todo_lists_scrollarea_inner"
-					th:each="simple : ${SimpleForm}" th:object="${simple}">
-					
-					<a class="simple_todo_lists"
-						th:href="@{/web/see/list/{listId}(listId=*{listId})}" 
+				<div class="simple_todo_lists_scrollarea_inner">
+					<div class="simple_todo_lists"
+						th:each="simple : ${SimpleForm}" th:object="${simple}"
+						th:attr="data-href=@{/web/see/list/{listId}(listId=*{listId})}"
 						th:text="*{listName}">
-					</a>
+					</div>
 				</div>
 			</div>
 		</div>

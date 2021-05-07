@@ -34,7 +34,7 @@ public class ListService {
 		
 		//データセット
 		UpdateListForm form = new UpdateListForm();
-		form.setListId(entity.getListId().toString());
+		form.setListId(entity.getListId());
 		form.setListName(entity.getListName());
 		form.setListDate(
 				dateUtility.dateTypeToDateFormatString(entity.getListDate()));
@@ -52,11 +52,11 @@ public class ListService {
 		listApi.updateList(user, listApi. new UpdateDtoBuilder()
 										.setListDate(form.getListDateToDate())
 										.setlistName(form.getListName())
-										.setSpaceId(Integer.parseInt(form.getListId()))
+										.setSpaceId(form.getListId())
 										.setListTime(form.getListTimeToDate()));
 	}
 
 	public void deleteList(UserDetailsImp user, DeleteNoneUserInSpaceForm form) {
-		listApi.deleteList(user, Integer.parseInt(form.getId()));
+		listApi.deleteList(user, form.getId());
 	}
 }

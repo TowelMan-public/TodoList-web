@@ -32,10 +32,13 @@ public class SerchPublicSpaceControl {
 	public String showPage(@AuthenticationPrincipal UserDetailsImp user, Model model) {
 		return new ModelSetter(model,ModelSetter.PAGE_SERCH_SPACE_PUBLIC)
 				
-					.setShowForm(
-							spaceService.getPublicSpace(user))
-					
-					.buildAndReturnUrl();
+				.setShowForm(
+						spaceService.getPublicSpace(user))
+				
+				.setJoinPublicSpaceForm(
+						new JoinPublicSpaceForm())
+				
+				.buildAndReturnUrl();
 	}
 	
 	@PostMapping("join/space/public")

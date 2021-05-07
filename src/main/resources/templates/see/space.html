@@ -7,11 +7,12 @@
 		<input type="radio" name="scopeId" th:field="*{scopeId}" value="2" th:attr="checked=*{scopeId}==2 ? 'checked' : ''">プロテクト</input><br>
 		<input type="radio" name="scopeId" th:field="*{scopeId}" value="3" th:attr="checked=*{scopeId}==3 ? 'checked' : ''">プライベート</input><br>
 		<input type="submit" class="button" value="変更" />
-		<form th:action="@{/web/delete/space}" method="post" th:object="${DeleteNoneUserInSpaceForm}" class="button_form"> 
-			<input type="hidden" name="id" th:value="${spaceId}" th:field="${DeleteNoneUserInSpaceForm.id}"/>
-			<input type="submit" class="delete_button" value="削除" />
-		</form>
-	</form><br><br>
+		<input type="submit" class="delete_button" value="削除" form="delete_form"/>
+	</form>
+	<form th:action="@{/web/delete/space}" method="post" th:object="${DeleteNoneUserInSpaceForm}" class="button_form" id="delete_form"> 
+		<input type="hidden" name="id" th:value="${spaceId}"/>
+	</form>
+	<br><br>
 	<a th:href="@{/web/insert/list/{spaceId}(spaceId=${spaceId})}">・このプロジェクトにToDoリストを作成する</a><br>
 	<a th:href="@{/web/exit/space/{spaceId}(spaceId=${spaceId})}">・このプロジェクトから脱退する</a><br>
 	<a th:href="@{/web/insert/space/user/{spaceId}(spaceId=${spaceId})}">・このプロジェクトに新しくユーザーを加入させる</a><br><br>
@@ -30,8 +31,8 @@
 			</td>
 			<td>
 				<form th:action="@{/web/delete/space/user}" method="post" th:object="${DeleteUserInSpaceForm}" class="button_form"> 
-					<input type="hidden" name="id" th:value="${form.spaceId}" th:field="${DeleteUserInSpaceForm.id}"/>
-					<input type="hidden" name="username" th:value="${form.username}" th:field="${DeleteNoneUserInSpaceForm.username}"/>
+					<input type="hidden" name="id" th:value="${form.spaceId}"/>
+					<input type="hidden" name="username" th:value="${form.username}"/>
 					<input type="submit" class="delete_button" value="削除" />
 				</form>
 			</td>

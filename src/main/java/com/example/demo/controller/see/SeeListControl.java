@@ -77,4 +77,9 @@ public class SeeListControl {
 		//リダイレクト
 		return "redirect:" + UrlConfig.ROOT_URL + "/see/space/day";
 	}
+	
+	@GetMapping("delete/list")
+	public String test(@AuthenticationPrincipal UserDetailsImp user){
+		return "helow";
+	}
 }
