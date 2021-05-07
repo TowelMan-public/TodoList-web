@@ -11,7 +11,7 @@
 			<td th:text="*{spaceName}"></td>
 			<td>
 				<form th:action="@{/web/join/space/public}" method="post" th:object="${JoinPublicSpaceForm}" class="button_form"> 
-					<input type="hidden" name="spaceId" th:value="${spaceId}"/>
+					<input type="hidden" name="spaceId" th:value="${form.spaceId}"/>
 					<input type="submit" class="button" value="加入" />
 				</form>
 			</td>
