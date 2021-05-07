@@ -31,7 +31,7 @@ public class SpaceApi {
 		Dto dto = new Dto();
 		dto.setSpaceId(spaceId);
 		
-		return restTemplateAdapter.getForObjectWhenLogined(URL, null, SpaceEntity.class, user);
+		return restTemplateAdapter.getForObjectWhenLogined(URL, dto, SpaceEntity.class, user);
 	}
 	
 	public void makeSpace(UserDetailsImp user, String spaceName, int scopeId) {
